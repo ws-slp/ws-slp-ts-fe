@@ -1,6 +1,27 @@
+# whateverSpace / synthLibraryPortland frontend
+
+![shaka](https://theneoncove.com/wp-content/uploads/2019/06/Heart_Us-49555.jpg "shaka")
+
+## General info
+sick frontend for the whateverSpace/synthLibraryPortland website
+	
+## Technologies
+Project is created with:
+* React
+* Next.Js
+* SupaBase
+
+## Deployed on Vercel
+
+<a href='https://ws-slp-ts-fe.vercel.app/'>Deployed Site</a>
+
+## Table of contents
+* [General info](#general-info)
+* [Technologies](#technologies)
+* [Setup](#setup)
 
 # Next.js Starter Kit
-Boilerplate to quckly get up and running with Next.js with
+Boilerplate to quickly get up and running with Next.js with
 - __Typescript__ as the language choice
 - __Tailwind CSS__ for quick styling without getting out of your HTML
 - __ESLint__ for static code analysis
@@ -9,17 +30,17 @@ Boilerplate to quckly get up and running with Next.js with
 - __Icons & SVG__ support out of the box
 
 and pre-made
-- __Message/Alerts__ `coz who don't uses one?
+- __Message/Alerts__ 
 - __Authentication system with Supabase__
 
-
-
 ## Getting Started
+To run this project, install it locally using npm:
 
-First, run the development server:
+```
+$ cd ../ws-slp-ts-fe
+$ npm install
 
-```bash
-npm run dev
+$ npm run dev
 # or
 yarn dev
 ```
@@ -32,17 +53,6 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 
 The `src/pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-## Learn More
+## Devs
+<a href='https://michaelromay.dev/'>Michael Romay</a>
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
