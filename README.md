@@ -20,7 +20,7 @@ Project is created with:
 * [Technologies](#technologies)
 * [Setup](#setup)
 
-# Next.js Starter Kit
+## Next.js Starter Kit
 Boilerplate to quickly get up and running with Next.js with
 - __Typescript__ as the language choice
 - __Tailwind CSS__ for quick styling without getting out of your HTML
@@ -44,6 +44,13 @@ $ npm run dev
 # or
 yarn dev
 ```
+
+You'll need to make a  `.env.local` file with these variables defined:
+```
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_KEY=
+```
+You can find this url and key in our `#web-dev` slack channel
 
 Open [http://localhost:3005](http://localhost:3005) with your browser to see the result.
 
