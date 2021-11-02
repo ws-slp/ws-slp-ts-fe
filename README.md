@@ -2,6 +2,15 @@
 
 ![shaka](https://theneoncove.com/wp-content/uploads/2019/06/Heart_Us-49555.jpg "shaka")
 
+## Table of contents
+* [General info](#general-info)
+* [Technologies](#technologies)
+* [Setup](#setup)
+* [Deployed Site](#deployed-site)
+* [Next.js Starter Kit](#next.js-starter-kit)
+* [Getting Started](#getting-started)
+* [Devs](#devs)
+
 ## General info
 sick frontend for the whateverSpace/synthLibraryPortland website
 	
@@ -9,16 +18,12 @@ sick frontend for the whateverSpace/synthLibraryPortland website
 Project is created with:
 * React
 * Next.Js
-* SupaBase
+* Supabase
 
-## Deployed on Vercel
+## Deployed Site
 
 <a href='https://ws-slp-ts-fe.vercel.app/'>Deployed Site</a>
-
-## Table of contents
-* [General info](#general-info)
-* [Technologies](#technologies)
-* [Setup](#setup)
+Deployed on Vercel
 
 ## Next.js Starter Kit
 Boilerplate to quickly get up and running with Next.js with
