@@ -30,6 +30,20 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
   const [userLoading, setUserLoading] = useState(true)
   const [loggedIn, setLoggedin] = useState(false)
   const { handleMessage } = useMessage()
+  const [email, setEmail] = useState('')
+
+  const handleLogin = async (email) => {
+    try {
+      setLoading(true)
+      const { error } = await supabase.auth.signIn({ email })
+      if (error) throw error
+      alert('Check your email for the login link!')
+    } catch (error) {
+      alert(error.error_description || error.message)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const signUp = async (payload: UserCredentials) => {
     try {
@@ -127,19 +141,50 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
   }, [])
 
   return (
-    <AuthContext.Provider
-      value={{
-        user,
-        signUp,
-        signIn,
-        signInWithProvider,
-        signOut,
-        loggedIn,
-        loading,
-        userLoading,
-      }}
-    >
-      {children}
-    </AuthContext.Provider>
+    <>
+      <AuthContext.Provider
+        value={{
+          user,
+          signUp,
+          signIn,
+          signInWithProvider,
+          signOut,
+          loggedIn,
+          loading,
+          userLoading,
+        }}
+      >
+        {children}
+      </AuthContext.Provider>
+      <div className="row flex flex-center">
+        <div className="col-6 form-widget">
+          <h1 className="header">whateverSpace/SLP</h1>
+          <p className="description">
+            Sign in via magic link with your email below
+          </p>
+          <div>
+            <input
+              className="inputField"
+              type="email"
+              placeholder="Your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div>
+            <button
+              onClick={(e) => {
+                e.preventDefault()
+                handleLogin(email)
+              }}
+              className="button block"
+              disabled={loading}
+            >
+              <span>{loading ? 'Loading' : 'Send magic link'}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
   )
 }
