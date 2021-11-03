@@ -1,6 +1,12 @@
 import { createContext, FunctionComponent, useState, useEffect } from 'react'
 import Router from 'next/router'
-import { User, Session, AuthChangeEvent, Provider, UserCredentials } from '@supabase/supabase-js'
+import {
+  User,
+  Session,
+  AuthChangeEvent,
+  Provider,
+  UserCredentials,
+} from '@supabase/supabase-js'
 import { supabase } from '~/lib/supabase'
 import { useMessage } from '~/lib/message'
 import { ROUTE_HOME, ROUTE_AUTH } from '~/config'

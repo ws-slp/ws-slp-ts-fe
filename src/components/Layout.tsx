@@ -1,7 +1,7 @@
 import { Fragment, FunctionComponent } from 'react'
 import classNames from 'classnames'
-import Header from './Header'
-import Footer from './Footer'
+import Header from './Header/Header'
+import Footer from './Footer/Footer'
 import { MessageList, useMessage } from '~/lib/message'
 
 type LayoutProps = {

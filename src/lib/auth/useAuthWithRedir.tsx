@@ -3,7 +3,6 @@ import Router from 'next/router'
 import { useAuth } from './useAuth'
 import { ROUTE_AUTH } from '~/config'
 
-
 export const useAuthWithRedir = () => {
   const context = useAuth()
   const { userLoading, loggedIn } = context
