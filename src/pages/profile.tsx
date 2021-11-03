@@ -1,28 +1,28 @@
 import { useEffect, useState } from 'react'
 import Avatar from '../components/Avatar/Avatar'
-import { GetServerSideProps } from 'next'
-import Link from 'next/link'
-import Router from 'next/router'
+// import { GetServerSideProps } from 'next'
+// import Link from 'next/link'
+// import Router from 'next/router'
 import { supabase } from '~/lib/supabase'
-import { useAuth, ProtectedRoute } from '~/lib/auth'
+// import { useAuth, ProtectedRoute } from '~/lib/auth'
 import Layout from '~/components/Layout'
-import { SpinnerFullPage } from '~/components/Spinner'
-import { ROUTE_AUTH } from '~/config'
-import { NextAppPageServerSideProps } from '~/types/app'
+// import { SpinnerFullPage } from '~/components/Spinner'
+// import { ROUTE_AUTH } from '~/config'
+// import { NextAppPageServerSideProps } from '~/types/app'
 
 // const ProfilePage = (props) => {
 const ProfilePage = ({ session }) => {
-  const { user, userLoading, signOut, loggedIn } = useAuth()
+  // const { user, userLoading, signOut, loggedIn } = useAuth()
   const [loading, setLoading] = useState(true)
   const [username, setUsername] = useState(null)
   const [website, setWebsite] = useState(null)
   const [avatar_url, setAvatarUrl] = useState(null)
 
-  useEffect(() => {
-    if (!userLoading && !loggedIn) {
-      Router.push(ROUTE_AUTH)
-    }
-  }, [userLoading, loggedIn])
+  // useEffect(() => {
+  //   if (!userLoading && !loggedIn) {
+  //     Router.push(ROUTE_AUTH)
+  //   }
+  // }, [userLoading, loggedIn])
 
   useEffect(() => {
     getProfile()
@@ -82,9 +82,9 @@ const ProfilePage = ({ session }) => {
     }
   }
 
-  if (userLoading) {
-    return <SpinnerFullPage />
-  }
+  // if (userLoading) {
+  //   return <SpinnerFullPage />
+  // }
 
   return (
     <Layout useBackdrop={false}>
