@@ -22,7 +22,7 @@ Project is created with:
 
 ## Deployed Site
 
-<a href='https://ws-slp-ts-fe.vercel.app/'>Deployed Site</a>
+<a href='https://wsslpfe.vercel.app/'>Deployed Site</a>
 Deployed on Vercel
 
 ## Next.js Starter Kit
