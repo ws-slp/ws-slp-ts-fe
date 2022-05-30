@@ -13,6 +13,7 @@ import {MessageProvider} from '../lib/message';
 import {AuthProvider} from '../lib/auth';
 
 function MyApp({Component, pageProps}: AppProps) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const pageMeta = (Component as any)?.defaultProps?.meta || {};
   const pageSEO = {...SEO, ...pageMeta};
 
