@@ -1,11 +1,11 @@
 import {useState} from 'react';
 import {NextPage} from 'next';
 import {FaLock, FaGithub} from 'react-icons/fa';
-import {NextAppPageProps} from '~/types/app';
-import Layout from '~/components/Layout';
-import Spinner from '~/components/Spinner';
-import {useFormFields} from '~/lib/utils';
-import {useAuth} from '~/lib/auth';
+import {NextAppPageProps} from '../types/app';
+import Layout from '../components/Layout';
+import Spinner from '../components/Spinner';
+import {useFormFields} from '../lib/utils';
+import {useAuth} from '../lib/auth';
 
 type SignUpFieldProps = {
   email: string;
@@ -26,7 +26,7 @@ const IndexPage: NextPage<NextAppPageProps> = () => {
     useFormFields<SignUpFieldProps>(FORM_VALUES);
   // 2. send the provided details to Supabase
 
-  const handleSumbit = async (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     isSignIn ? await signIn(values) : await signUp(values);
     resetFormFields();
@@ -50,7 +50,7 @@ const IndexPage: NextPage<NextAppPageProps> = () => {
         </div>
 
         {/* Sign Up form --> */}
-        <form className="w-full sm:w-1/2 xl:w-1/3" onSubmit={handleSumbit}>
+        <form className="w-full sm:w-1/2 xl:w-1/3" onSubmit={handleSubmit}>
           <div className="border-teal p-8 border-t-12 bg-white mb-6 rounded-lg shadow-lg">
             <button
               onClick={evt => {

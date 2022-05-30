@@ -6,5 +6,5 @@ export type MessageProps = {
 };
 
 export type MessageListProps = {
-  messages: MessageProps[];
+  messages: MessageProps[] | undefined;
 };

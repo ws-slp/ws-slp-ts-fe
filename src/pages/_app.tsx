@@ -1,3 +1,4 @@
+// eslint-disable-next-line node/no-unpublished-import
 import 'tailwindcss/tailwind.css';
 import '@fontsource/work-sans';
 import '~/styles/globals.css';
@@ -8,8 +9,8 @@ import Head from 'next/head';
 import {DefaultSeo} from 'next-seo';
 
 import SEO from '../../next-seo.config';
-import {MessageProvider} from '~/lib/message';
-import {AuthProvider} from '~/lib/auth';
+import {MessageProvider} from '../lib/message';
+import {AuthProvider} from '../lib/auth';
 
 function MyApp({Component, pageProps}: AppProps) {
   const pageMeta = (Component as any)?.defaultProps?.meta || {};

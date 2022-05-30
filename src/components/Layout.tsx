@@ -17,7 +17,7 @@ const FullLayout: FunctionComponent<LayoutProps> = ({
   const {messages} = useMessage();
   return (
     <Fragment>
-      <Header />
+      <Header children={''} />
       <main
         className={classNames(
           'w-full h-screen mx-auto relative',

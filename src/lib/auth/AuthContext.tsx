@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import {createContext, FunctionComponent, useState, useEffect} from 'react';
 import Router from 'next/router';
 import {
@@ -28,11 +30,11 @@ export const AuthProvider: FunctionComponent = ({children}) => {
   const [user, setUser] = useState<User>(null);
   const [loading, setLoading] = useState(false);
   const [userLoading, setUserLoading] = useState(true);
-  const [loggedIn, setLoggedin] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
   const {handleMessage} = useMessage();
   const [email, setEmail] = useState('');
 
-  const handleLogin = async email => {
+  const handleLogin = async (email: string) => {
     try {
       setLoading(true);
       const {error} = await supabase.auth.signIn({email});
@@ -78,7 +80,7 @@ export const AuthProvider: FunctionComponent = ({children}) => {
         handleMessage({
           message: payload.password.length
             ? `Welcome, ${user.email}`
-            : `Please check your email for the magic link`,
+            : 'Please check your email for the magic link',
           type: 'success',
         });
       }
@@ -113,7 +115,7 @@ export const AuthProvider: FunctionComponent = ({children}) => {
     if (user) {
       setUser(user);
       setUserLoading(false);
-      setLoggedin(true);
+      setLoggedIn(true);
       Router.push(ROUTE_HOME);
     } else {
       setUserLoading(false);
@@ -121,12 +123,12 @@ export const AuthProvider: FunctionComponent = ({children}) => {
 
     const {data: authListener} = supabase.auth.onAuthStateChange(
       async (event, session) => {
-        const user = session?.user! ?? null;
+        const user = session?.user ?? null;
         setUserLoading(false);
         await setServerSession(event, session);
         if (user) {
           setUser(user);
-          setLoggedin(true);
+          setLoggedIn(true);
           Router.push(ROUTE_HOME);
         } else {
           setUser(null);

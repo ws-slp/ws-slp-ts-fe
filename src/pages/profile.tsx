@@ -9,7 +9,7 @@ import {SpinnerFullPage} from '../components/Spinner';
 import {ROUTE_AUTH} from '../config';
 import {NextAppPageServerSideProps} from '../types/app';
 
-const ProfilePage = props => {
+const ProfilePage = () => {
   const {user, userLoading, signOut, loggedIn} = useAuth();
 
   useEffect(() => {

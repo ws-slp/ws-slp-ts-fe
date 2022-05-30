@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import {createContext, FunctionComponent, useState} from 'react';
 import {MessageProps} from './message.types';
 

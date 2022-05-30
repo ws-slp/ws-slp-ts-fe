@@ -1,3 +1,4 @@
+/* eslint-disable node/no-unpublished-require */
 const {fontFamily} = require('tailwindcss/defaultTheme');
 module.exports = {
   mode: 'jit',
