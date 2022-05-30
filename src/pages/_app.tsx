@@ -1,19 +1,19 @@
-import 'tailwindcss/tailwind.css'
-import '@fontsource/work-sans'
-import '~/styles/globals.css'
+import 'tailwindcss/tailwind.css';
+import '@fontsource/work-sans';
+import '~/styles/globals.css';
 
-import React from 'react'
-import { AppProps } from 'next/app'
-import Head from 'next/head'
-import { DefaultSeo } from 'next-seo'
+import React from 'react';
+import {AppProps} from 'next/app';
+import Head from 'next/head';
+import {DefaultSeo} from 'next-seo';
 
-import SEO from '../../next-seo.config'
-import { MessageProvider } from '~/lib/message'
-import { AuthProvider } from '~/lib/auth'
+import SEO from '../../next-seo.config';
+import {MessageProvider} from '~/lib/message';
+import {AuthProvider} from '~/lib/auth';
 
-function MyApp({ Component, pageProps }: AppProps) {
-  const pageMeta = (Component as any)?.defaultProps?.meta || {}
-  const pageSEO = { ...SEO, ...pageMeta }
+function MyApp({Component, pageProps}: AppProps) {
+  const pageMeta = (Component as any)?.defaultProps?.meta || {};
+  const pageSEO = {...SEO, ...pageMeta};
 
   return (
     <React.Fragment>
@@ -27,7 +27,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         </AuthProvider>
       </MessageProvider>
     </React.Fragment>
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;

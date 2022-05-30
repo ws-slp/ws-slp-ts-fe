@@ -1,4 +1,4 @@
-import Layout from '../components/Layout'
+import Layout from '../components/Layout';
 
 const About = () => {
   //this is javascript area
@@ -9,7 +9,7 @@ const About = () => {
         <h4>this is about page</h4>
       </Layout>
     </>
-  )
-}
+  );
+};
 
-export default About
+export default About;

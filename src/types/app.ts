@@ -1,27 +1,27 @@
-import { User } from '@supabase/supabase-js'
+import {User} from '@supabase/supabase-js';
 
 export type NextAppSEOProps = {
-  title: string
-}
+  title: string;
+};
 
 export type NextAppPageProps = {
-  meta: NextAppSEOProps
-}
+  meta: NextAppSEOProps;
+};
 
 export type NextAppPageUserProps = {
   props: {
-    user: User
-    loggedIn: boolean
-  }
-}
+    user: User;
+    loggedIn: boolean;
+  };
+};
 
 export type NextAppPageRedirProps = {
   redirect: {
-    destination: string
-    permanent: boolean
-  }
-}
+    destination: string;
+    permanent: boolean;
+  };
+};
 
 export type NextAppPageServerSideProps =
   | NextAppPageUserProps
-  | NextAppPageRedirProps
+  | NextAppPageRedirProps;

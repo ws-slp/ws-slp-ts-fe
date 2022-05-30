@@ -1,144 +1,144 @@
-import { createContext, FunctionComponent, useState, useEffect } from 'react'
-import Router from 'next/router'
+import {createContext, FunctionComponent, useState, useEffect} from 'react';
+import Router from 'next/router';
 import {
   User,
   Session,
   AuthChangeEvent,
   Provider,
   UserCredentials,
-} from '@supabase/supabase-js'
-import { supabase } from '~/lib/supabase'
-import { useMessage } from '~/lib/message'
-import { ROUTE_HOME, ROUTE_AUTH } from '~/config'
+} from '@supabase/supabase-js';
+import {supabase} from '../supabase';
+import {useMessage} from '../message';
+import {ROUTE_HOME, ROUTE_AUTH} from '../../config';
 
 export type AuthContextProps = {
-  user: User
-  signUp: (payload: UserCredentials) => void
-  signIn: (payload: UserCredentials) => void
-  signInWithProvider: (provider: Provider) => Promise<void>
-  signOut: () => void
-  loggedIn: boolean
-  loading: boolean
-  userLoading: boolean
-}
+  user: User;
+  signUp: (payload: UserCredentials) => void;
+  signIn: (payload: UserCredentials) => void;
+  signInWithProvider: (provider: Provider) => Promise<void>;
+  signOut: () => void;
+  loggedIn: boolean;
+  loading: boolean;
+  userLoading: boolean;
+};
 
-export const AuthContext = createContext<Partial<AuthContextProps>>({})
+export const AuthContext = createContext<Partial<AuthContextProps>>({});
 
-export const AuthProvider: FunctionComponent = ({ children }) => {
-  const [user, setUser] = useState<User>(null)
-  const [loading, setLoading] = useState(false)
-  const [userLoading, setUserLoading] = useState(true)
-  const [loggedIn, setLoggedin] = useState(false)
-  const { handleMessage } = useMessage()
-  const [email, setEmail] = useState('')
+export const AuthProvider: FunctionComponent = ({children}) => {
+  const [user, setUser] = useState<User>(null);
+  const [loading, setLoading] = useState(false);
+  const [userLoading, setUserLoading] = useState(true);
+  const [loggedIn, setLoggedin] = useState(false);
+  const {handleMessage} = useMessage();
+  const [email, setEmail] = useState('');
 
-  const handleLogin = async (email) => {
+  const handleLogin = async email => {
     try {
-      setLoading(true)
-      const { error } = await supabase.auth.signIn({ email })
-      if (error) throw error
-      alert('Check your email for the login link!')
+      setLoading(true);
+      const {error} = await supabase.auth.signIn({email});
+      if (error) throw error;
+      alert('Check your email for the login link!');
     } catch (error) {
-      alert(error.error_description || error.message)
+      alert(error.error_description || error.message);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   const signUp = async (payload: UserCredentials) => {
     try {
-      setLoading(true)
-      const { error } = await supabase.auth.signUp(payload)
+      setLoading(true);
+      const {error} = await supabase.auth.signUp(payload);
       if (error) {
-        handleMessage({ message: error.message, type: 'error' })
+        handleMessage({message: error.message, type: 'error'});
       } else {
         handleMessage({
           message:
             'Signup successful. Please check your inbox for a confirmation email!',
           type: 'success',
-        })
+        });
       }
     } catch (error) {
       handleMessage({
         message: error.error_description || error,
         type: 'error',
-      })
+      });
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   const signIn = async (payload: UserCredentials) => {
     try {
-      setLoading(true)
-      const { error, user } = await supabase.auth.signIn(payload)
+      setLoading(true);
+      const {error, user} = await supabase.auth.signIn(payload);
       if (error) {
-        handleMessage({ message: error.message, type: 'error' })
+        handleMessage({message: error.message, type: 'error'});
       } else {
         handleMessage({
           message: payload.password.length
             ? `Welcome, ${user.email}`
             : `Please check your email for the magic link`,
           type: 'success',
-        })
+        });
       }
     } catch (error) {
       handleMessage({
         message: error.error_description || error,
         type: 'error',
-      })
+      });
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   const signInWithProvider = async (provider: Provider) => {
-    await supabase.auth.signIn({ provider })
-  }
+    await supabase.auth.signIn({provider});
+  };
 
-  const signOut = async () => await supabase.auth.signOut()
+  const signOut = async () => await supabase.auth.signOut();
 
   const setServerSession = async (event: AuthChangeEvent, session: Session) => {
     await fetch('/api/auth', {
       method: 'POST',
-      headers: new Headers({ 'Content-Type': 'application/json' }),
+      headers: new Headers({'Content-Type': 'application/json'}),
       credentials: 'same-origin',
-      body: JSON.stringify({ event, session }),
-    })
-  }
+      body: JSON.stringify({event, session}),
+    });
+  };
 
   useEffect(() => {
-    const user = supabase.auth.user()
+    const user = supabase.auth.user();
 
     if (user) {
-      setUser(user)
-      setUserLoading(false)
-      setLoggedin(true)
-      Router.push(ROUTE_HOME)
+      setUser(user);
+      setUserLoading(false);
+      setLoggedin(true);
+      Router.push(ROUTE_HOME);
     } else {
-      setUserLoading(false)
+      setUserLoading(false);
     }
 
-    const { data: authListener } = supabase.auth.onAuthStateChange(
+    const {data: authListener} = supabase.auth.onAuthStateChange(
       async (event, session) => {
-        const user = session?.user! ?? null
-        setUserLoading(false)
-        await setServerSession(event, session)
+        const user = session?.user! ?? null;
+        setUserLoading(false);
+        await setServerSession(event, session);
         if (user) {
-          setUser(user)
-          setLoggedin(true)
-          Router.push(ROUTE_HOME)
+          setUser(user);
+          setLoggedin(true);
+          Router.push(ROUTE_HOME);
         } else {
-          setUser(null)
-          Router.push(ROUTE_AUTH)
+          setUser(null);
+          Router.push(ROUTE_AUTH);
         }
       }
-    )
+    );
 
     return () => {
-      authListener.unsubscribe()
-    }
-  }, [])
+      authListener.unsubscribe();
+    };
+  }, []);
 
   return (
     <>
@@ -168,14 +168,14 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
               type="email"
               placeholder="Your email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={e => setEmail(e.target.value)}
             />
           </div>
           <div>
             <button
-              onClick={(e) => {
-                e.preventDefault()
-                handleLogin(email)
+              onClick={e => {
+                e.preventDefault();
+                handleLogin(email);
               }}
               className="button block"
               disabled={loading}
@@ -186,5 +186,5 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};

@@ -1,12 +1,8 @@
-import { ReactChildren, FunctionComponent } from 'react'
-import Head from 'next/head'
-import Link from 'next/link'
+import {ReactChildren, FunctionComponent} from 'react';
+import Head from 'next/head';
+import Link from 'next/link';
 
-const Header: FunctionComponent = ({
-  children,
-}: {
-  children: ReactChildren
-}) => {
+const Header: FunctionComponent = ({children}: {children: ReactChildren}) => {
   return (
     <>
       <Head>
@@ -21,7 +17,7 @@ const Header: FunctionComponent = ({
         <a>about</a>
       </Link>
     </>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
