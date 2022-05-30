@@ -6,6 +6,7 @@ export type ProtectedRouteProps = {
   props: {
     user: User;
     loggedIn: boolean;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: any;
   };
 };
