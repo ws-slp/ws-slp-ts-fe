@@ -47,6 +47,9 @@ and pre-made
 
 ## Getting Started
 
+Install the following dependencies: - [make](https://www.gnu.org/software/make/) for linux/mac, or
+[make for windows](http://gnuwin32.sourceforge.net/packages/make.htm) on windows
+
 To run this project, install it locally using npm:
 
 ```
