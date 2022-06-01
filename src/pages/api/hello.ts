@@ -1,7 +1,10 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
-const hello = (req, res) => {
-  res.status(200).json({ name: 'John Doe' })
-}
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 
-export default hello
+const hello = (req, res) => {
+  res.status(200).json({name: 'John Doe'});
+};
+
+export default hello;

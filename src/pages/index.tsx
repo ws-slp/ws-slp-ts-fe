@@ -1,36 +1,36 @@
-import { useState } from 'react'
-import { NextPage } from 'next'
-import { FaLock, FaGithub } from 'react-icons/fa'
-import { NextAppPageProps } from '~/types/app'
-import Layout from '~/components/Layout'
-import Spinner from '~/components/Spinner'
-import { useFormFields } from '~/lib/utils'
-import { useAuth } from '~/lib/auth'
+import {useState} from 'react';
+import {NextPage} from 'next';
+import {FaLock, FaGithub} from 'react-icons/fa';
+import {NextAppPageProps} from '../types/app';
+import Layout from '../components/Layout';
+import Spinner from '../components/Spinner';
+import {useFormFields} from '../lib/utils';
+import {useAuth} from '../lib/auth';
 
 type SignUpFieldProps = {
-  email: string
-  password: string
-}
+  email: string;
+  password: string;
+};
 
 const FORM_VALUES: SignUpFieldProps = {
   email: '',
   password: '',
-}
+};
 
 const IndexPage: NextPage<NextAppPageProps> = () => {
-  const [isSignIn, setIsSignIn] = useState(true)
-  const { loading, signIn, signUp, signInWithProvider } = useAuth()
+  const [isSignIn, setIsSignIn] = useState(true);
+  const {loading, signIn, signUp, signInWithProvider} = useAuth();
   // Now since we have our form ready, what we're gonna need for signing up our users
   // 1. let users provide email and password
   const [values, handleChange, resetFormFields] =
-    useFormFields<SignUpFieldProps>(FORM_VALUES)
+    useFormFields<SignUpFieldProps>(FORM_VALUES);
   // 2. send the provided details to Supabase
 
-  const handleSumbit = async (event: React.FormEvent) => {
-    event.preventDefault()
-    isSignIn ? await signIn(values) : await signUp(values)
-    resetFormFields()
-  }
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    isSignIn ? await signIn(values) : await signUp(values);
+    resetFormFields();
+  };
 
   return (
     <Layout useBackdrop={true} usePadding={false}>
@@ -50,12 +50,12 @@ const IndexPage: NextPage<NextAppPageProps> = () => {
         </div>
 
         {/* Sign Up form --> */}
-        <form className="w-full sm:w-1/2 xl:w-1/3" onSubmit={handleSumbit}>
+        <form className="w-full sm:w-1/2 xl:w-1/3" onSubmit={handleSubmit}>
           <div className="border-teal p-8 border-t-12 bg-white mb-6 rounded-lg shadow-lg">
             <button
-              onClick={(evt) => {
-                evt.preventDefault()
-                signInWithProvider('github')
+              onClick={evt => {
+                evt.preventDefault();
+                signInWithProvider('github');
               }}
               className="flex-1 bg-gray-200 text-green-700 py-3 rounded w-full text-center shadow"
             >
@@ -115,9 +115,9 @@ const IndexPage: NextPage<NextAppPageProps> = () => {
                 <a
                   className="block font-semibold"
                   href=""
-                  onClick={(e) => {
-                    e.preventDefault()
-                    setIsSignIn(!isSignIn)
+                  onClick={e => {
+                    e.preventDefault();
+                    setIsSignIn(!isSignIn);
                   }}
                 >
                   {isSignIn ? 'Sign Up' : 'Log In'}
@@ -129,13 +129,13 @@ const IndexPage: NextPage<NextAppPageProps> = () => {
         <div className="h-12 w-12 relative">{loading && <Spinner />}</div>
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default IndexPage
+export default IndexPage;
 
 IndexPage.defaultProps = {
   meta: {
     title: 'SupaAuth - Sign Up',
   },
-}
+};

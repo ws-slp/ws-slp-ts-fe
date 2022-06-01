@@ -1,16 +1,19 @@
 {
+  "extends": "./node_modules/gts/tsconfig-google.json",
   "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "build",
+    "allowJs": true,
     "target": "es5",
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
     ],
-    "allowJs": true,
     "skipLibCheck": true,
-    "strict": false,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
+    "noImplicitReturns": false,
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
@@ -18,19 +21,26 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "baseUrl": "./src",
+    "noImplicitAny": true,
+    "incremental": true,
     "paths": {
       "~/*": [
         "./*"
       ]
     },
-    "incremental": true
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "src/components/layout.ts.old"  ],
+, "src/components/layout.ts.old"],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "./src/pages/index.tsx",
+    "./src/pages/_app.tsx",
+    "./tailwind.config.js",
+    "**/*.jsx",
+    "src/components/Avatar/Avatar.tsx"
   ]
 }
+

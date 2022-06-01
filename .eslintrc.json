@@ -1,0 +1,13 @@
+{
+  "root": true,
+  "extends": "./node_modules/gts/",
+  "rules": {
+    "node/no-unpublished-import": ["error", {
+        "allowModules": ["protractor"]
+    }]
+  },
+  "parserOptions": {
+    "sourceType": "module",
+    "warnOnUnsupportedTypeScriptVersion": false
+  }
+}

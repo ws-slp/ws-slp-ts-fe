@@ -1,4 +1,5 @@
-const { fontFamily } = require('tailwindcss/defaultTheme')
+/* eslint-disable node/no-unpublished-require */
+const {fontFamily} = require('tailwindcss/defaultTheme');
 module.exports = {
   mode: 'jit',
   purge: [
@@ -22,4 +23,4 @@ module.exports = {
     require('@tailwindcss/aspect-ratio'),
     require('daisyui'),
   ],
-}
+};

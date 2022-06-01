@@ -1,23 +1,23 @@
-import { Fragment, FunctionComponent } from 'react'
-import classNames from 'classnames'
-import Header from './Header/Header'
-import Footer from './Footer/Footer'
-import { MessageList, useMessage } from '~/lib/message'
+import {Fragment, FunctionComponent} from 'react';
+import classNames from 'classnames';
+import Header from './Header/Header';
+import Footer from './Footer/Footer';
+import {MessageList, useMessage} from '~/lib/message';
 
 type LayoutProps = {
-  usePadding?: boolean
-  useBackdrop?: boolean
-}
+  usePadding?: boolean;
+  useBackdrop?: boolean;
+};
 
 const FullLayout: FunctionComponent<LayoutProps> = ({
   children,
   usePadding,
   useBackdrop,
 }) => {
-  const { messages } = useMessage()
+  const {messages} = useMessage();
   return (
     <Fragment>
-      <Header />
+      <Header children={''} />
       <main
         className={classNames(
           'w-full h-screen mx-auto relative',
@@ -30,12 +30,12 @@ const FullLayout: FunctionComponent<LayoutProps> = ({
       </main>
       <Footer />
     </Fragment>
-  )
-}
+  );
+};
 
 FullLayout.defaultProps = {
   usePadding: true,
   useBackdrop: false,
-}
+};
 
-export default FullLayout
+export default FullLayout;

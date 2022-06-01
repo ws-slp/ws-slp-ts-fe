@@ -1,25 +1,25 @@
-import { useEffect } from 'react'
-import { GetServerSideProps } from 'next'
-import Link from 'next/link'
-import Router from 'next/router'
-import { supabase } from '~/lib/supabase'
-import { useAuth, ProtectedRoute } from '~/lib/auth'
-import Layout from '~/components/Layout'
-import { SpinnerFullPage } from '~/components/Spinner'
-import { ROUTE_AUTH } from '~/config'
-import { NextAppPageServerSideProps } from '~/types/app'
+import {useEffect} from 'react';
+import {GetServerSideProps} from 'next';
+import Link from 'next/link';
+import Router from 'next/router';
+import {supabase} from '../lib/supabase';
+import {useAuth} from '../lib/auth';
+import Layout from '../components/Layout';
+import {SpinnerFullPage} from '../components/Spinner';
+import {ROUTE_AUTH} from '../config';
+import {NextAppPageServerSideProps} from '../types/app';
 
-const ProfilePage = (props) => {
-  const { user, userLoading, signOut, loggedIn } = useAuth()
+const ProfilePage = () => {
+  const {user, userLoading, signOut, loggedIn} = useAuth();
 
   useEffect(() => {
     if (!userLoading && !loggedIn) {
-      Router.push(ROUTE_AUTH)
+      Router.push(ROUTE_AUTH);
     }
-  }, [userLoading, loggedIn])
+  }, [userLoading, loggedIn]);
 
   if (userLoading) {
-    return <SpinnerFullPage />
+    return <SpinnerFullPage />;
   }
 
   return (
@@ -46,17 +46,17 @@ const ProfilePage = (props) => {
         )}
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default ProfilePage
+export default ProfilePage;
 
 // Fetch user data server-side to eliminate a flash of unauthenticated content.
 // We're identifying the logged-in user through supabase cookies and either redirecting to  `/` if the user is not found, or sending the `user` and `loggedIn` props which can be available to the above component through `props`.
 export const getServerSideProps: GetServerSideProps = async ({
   req,
 }): Promise<NextAppPageServerSideProps> => {
-  const { user } = await supabase.auth.api.getUserByCookie(req)
+  const {user} = await supabase.auth.api.getUserByCookie(req);
   // We can do a re-direction from the server
   if (!user) {
     return {
@@ -64,7 +64,7 @@ export const getServerSideProps: GetServerSideProps = async ({
         destination: '/',
         permanent: false,
       },
-    }
+    };
   }
   // or, alternatively, can send the same values that client-side context populates to check on the client and redirect
   // The following lines won't be used as we're redirecting above
@@ -73,8 +73,8 @@ export const getServerSideProps: GetServerSideProps = async ({
       user,
       loggedIn: !!user,
     },
-  }
-}
+  };
+};
 
 // As there could be many pages that'll be required to be rendered only for the logged-in users, and the above logic
 // for indetifying authenticity could become repetitive, there's a wrapper component `ProtectedRoute` already available
