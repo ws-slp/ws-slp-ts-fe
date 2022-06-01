@@ -16,25 +16,7 @@ on:
   release:
     types: [published]
 
-jobs:
-  get-versions:
-    runs-on: ubuntu-latest
-    if: ${{ !github.event.release }}
-    outputs:
-      nodeVersion: ${{ steps.getVersion.outputs.nodeVersion }}
-      npmVersion: ${{ steps.getVersion.outputs.npmVersion }}
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - id: getVersion
-        run: |
-          nodeVersion=$(awk -F '=' '/NODE_VERSION=/{print $2}' Dockerfile)
-          npmVersion=$(awk -F '=' '/NPM_VERSION=/{print $2}' Dockerfile)
-          echo $nodeVersion
-          echo $npmVersion
-          echo "::set-output name=nodeVersion::$(echo $nodeVersion)"
-          echo "::set-output name=npmVersion::$(echo $npmVersion)"
-          
+jobs:     
   lint:
     runs-on: ubuntu-latest
     name: "lint"
