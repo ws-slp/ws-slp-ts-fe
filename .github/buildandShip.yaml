@@ -1,0 +1,84 @@
+name: Build and Test
+on:
+  push:
+    branches:
+      - main
+      - dev
+    paths-ignore:
+      - "docs/**"
+      - "mkdocs.yml"
+      - ".vscode/**"
+      - "catalog-info.yaml"
+      - "**.md"
+      - ".gitignore"
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+  release:
+    types: [published]
+
+jobs:
+  get-versions:
+    runs-on: ubuntu-latest
+    if: ${{ !github.event.release }}
+    outputs:
+      nodeVersion: ${{ steps.getVersion.outputs.nodeVersion }}
+      npmVersion: ${{ steps.getVersion.outputs.npmVersion }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - id: getVersion
+        run: |
+          nodeVersion=$(awk -F '=' '/NODE_VERSION=/{print $2}' Dockerfile)
+          npmVersion=$(awk -F '=' '/NPM_VERSION=/{print $2}' Dockerfile)
+          echo $nodeVersion
+          echo $npmVersion
+          echo "::set-output name=nodeVersion::$(echo $nodeVersion)"
+          echo "::set-output name=npmVersion::$(echo $npmVersion)"
+          
+  lint:
+    runs-on: ubuntu-latest
+    name: "lint"
+    needs: get-versions
+    if: ${{ !github.event.release }}
+    continue-on-error: true
+    strategy:
+      fail-fast: false
+      matrix:
+        experimental: [true]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      # Install Node
+      - uses: actions/setup-node@v2
+        with:
+          node-version: ${{ needs.get-versions.outputs.nodeVersion  }}
+          cache: "npm"
+          cache-dependency-path: "**/package-lock.json"
+      # Install NPM Dependencies
+      - name: Install npm dependencies.
+        run: |
+          npm i -g npm@${{  needs.get-versions.outputs.npmVersion  }}
+          npm ci
+      - name: Run Linting
+        run: npm run lint
+
+  check-types:
+    runs-on: ubuntu-latest
+    name: "check-types"
+    needs: get-versions
+    if: ${{ !github.event.release }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      # Install Node
+      - uses: actions/setup-node@v2
+        with:
+          node-version: ${{ needs.get-versions.outputs.nodeVersion  }}
+          cache: "npm"
+          cache-dependency-path: "**/package-lock.json"
+      # Install NPM Dependencies
+      - name: Install npm dependencies.
+        run: |
+          npm i -g npm@${{  needs.get-versions.outputs.npmVersion  }}
+          npm ci
+      - run: npm run check-types
