@@ -16,11 +16,10 @@ on:
   release:
     types: [published]
 
-jobs:     
+jobs:
   lint:
     runs-on: ubuntu-latest
     name: "lint"
-    needs: get-versions
     if: ${{ !github.event.release }}
     continue-on-error: true
     strategy:
@@ -47,7 +46,6 @@ jobs:
   check-types:
     runs-on: ubuntu-latest
     name: "check-types"
-    needs: get-versions
     if: ${{ !github.event.release }}
     steps:
       - name: Checkout code
