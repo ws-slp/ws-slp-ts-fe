@@ -9,16 +9,16 @@ interface Library {
     updated_at: Date;
     name: string;
     quantity: number;
-    image_url: string;
-    manufacturer: string;
-    model: string;
-    weight: number;
-    description: string;
-    accessories: string;
+    image_url: string | null;
+    manufacturer: string | null;
+    model: string | null;
+    weight: number | null;
+    description: string | null;
+    accessories: string | null;
   };
 }
 
-const Library = () => {
+const Library: React.FunctionComponent = () => {
   const [modulars, setModulars] = useState<Library['modulars'][]>([]);
 
   useEffect(() => {
@@ -41,7 +41,11 @@ const Library = () => {
           <div key={item.modular_id}>
             <h3>{item.name}</h3>
             {item.quantity ? <p>In Stock</p> : <p>Out of Stock</p>}
-            <img src={item.image_url} alt={item.name} />
+            {item.image_url ? (
+              <img src={item.image_url} alt={item.name} />
+            ) : (
+              <p>No image available.</p>
+            )}
             <ul>
               Item Details
               <li>Manufacturer: {item.manufacturer}</li>
