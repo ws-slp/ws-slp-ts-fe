@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import {NextPage} from 'next';
-import {FaLock, FaGithub} from 'react-icons/fa';
+import {FaDiscord, FaLock, FaGithub, FaGoogle} from 'react-icons/fa';
 import {NextAppPageProps} from '../types/app';
 import Layout from '../components/Layout';
 import Spinner from '../components/Spinner';
@@ -55,12 +55,34 @@ const IndexPage: NextPage<NextAppPageProps> = () => {
             <button
               onClick={evt => {
                 evt.preventDefault();
+                signInWithProvider('discord');
+              }}
+              className="flex-1 bg-gray-200 text-green-700 py-3 rounded w-full text-center shadow"
+            >
+              <FaDiscord className="inline-block text-2xl" />{' '}
+              {isSignIn ? 'Log In' : 'Sign Up'} with <strong>Discord</strong>
+            </button>
+            <hr className="my-4" />
+            <button
+              onClick={evt => {
+                evt.preventDefault();
                 signInWithProvider('github');
               }}
               className="flex-1 bg-gray-200 text-green-700 py-3 rounded w-full text-center shadow"
             >
               <FaGithub className="inline-block text-2xl" />{' '}
               {isSignIn ? 'Log In' : 'Sign Up'} with <strong>Github</strong>
+            </button>
+            <hr className="my-4" />
+            <button
+              onClick={evt => {
+                evt.preventDefault();
+                signInWithProvider('google');
+              }}
+              className="flex-1 bg-gray-200 text-green-700 py-3 rounded w-full text-center shadow"
+            >
+              <FaGoogle className="inline-block text-2xl" />{' '}
+              {isSignIn ? 'Log In' : 'Sign Up'} with <strong>Google</strong>
             </button>
             <hr className="my-4" />
             <div className="mb-4">
