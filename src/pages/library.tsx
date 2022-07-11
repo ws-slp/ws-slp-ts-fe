@@ -4,8 +4,7 @@
 import Layout from '../components/Layout';
 import {useState, useEffect} from 'react';
 import {supabase} from '~/lib/supabase';
-import LibraryItemBuilder from '../components/Library/LibraryItemBuilder';
-
+import {LibraryItemBuilder} from '../components/Library/LibraryItemBuilder';
 export interface Modulars {
   modular_id: number;
   created_at: Date;
@@ -40,8 +39,7 @@ const Library: React.FunctionComponent = () => {
       <Layout>
         <h2>welcome to the library</h2>
         {modulars.map(item => {
-          console.log(item);
-          <LibraryItemBuilder key={item.modular_id} props={item} />;
+          return <LibraryItemBuilder key={item.modular_id || ''} {...item} />;
         })}
       </Layout>
     </>

@@ -1,13 +1,19 @@
 import React from 'react';
 import {Modulars} from '~/pages/library';
 
-const LibraryItemBuilder: React.FunctionComponent<Modulars> = props => {
+const LibraryItemBuilder = ({
+  modular_id,
+  name,
+  image_url,
+  quantity,
+}: Modulars) => {
+  console.log('modulars', image_url);
   return (
-    <div key={props.modular_id}>
-      <h3>{props.name}</h3>
-      {props.quantity ? <p>In Stock</p> : <p>Out of Stock</p>}
-      {props.image_url ? (
-        <img src={props.image_url} alt={props.name} />
+    <div key={modular_id}>
+      <h3>{name}</h3>
+      {quantity ? <p>In Stock</p> : <p>Out of Stock</p>}
+      {image_url ? (
+        <img src={image_url} alt={name} />
       ) : (
         <p>No image available.</p>
       )}
@@ -15,4 +21,4 @@ const LibraryItemBuilder: React.FunctionComponent<Modulars> = props => {
   );
 };
 
-export default LibraryItemBuilder;
+export {LibraryItemBuilder};
