@@ -1,12 +1,9 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-// @ts-nocheck
-
 import Layout from '../components/Layout';
 import {useState, useEffect} from 'react';
 import {supabase} from '~/lib/supabase';
 import LibraryItemBuilder from '../components/Library/LibraryItemBuilder';
 
-export interface Modulars {
+export interface Modular {
   modular_id: number;
   created_at: Date;
   updated_at: Date;
@@ -21,12 +18,12 @@ export interface Modulars {
 }
 
 const Library: React.FunctionComponent = () => {
-  const [modulars, setModulars] = useState<Modulars[]>([]);
+  const [modulars, setModulars] = useState<Modular[]>([]);
 
   useEffect(() => {
     const fetchModulars = async () => {
       const {error, data} = await supabase
-        .from<Modulars>('modulars')
+        .from<Modular>('modulars')
         .select('*');
       if (!error) {
         setModulars(data);
@@ -39,10 +36,9 @@ const Library: React.FunctionComponent = () => {
     <>
       <Layout>
         <h2>welcome to the library</h2>
-        {modulars.map(item => {
-          console.log(item);
-          <LibraryItemBuilder key={item.modular_id} props={item} />;
-        })}
+        {modulars.map(modular => (
+          <LibraryItemBuilder item={modular} />
+        ))}
       </Layout>
     </>
   );
