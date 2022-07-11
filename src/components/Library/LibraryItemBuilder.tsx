@@ -8,7 +8,7 @@ interface ItemProps {
 
 const LibraryItemBuilder: React.FunctionComponent<ItemProps> = props => {
   return (
-    <div key={props.item.modular_id}>
+    <div key={props.item.inventory_id}>
       <h3>{props.item.name}</h3>
       {props.item.quantity ? <p>In Stock</p> : <p>Out of Stock</p>}
       {props.item.image_url ? (

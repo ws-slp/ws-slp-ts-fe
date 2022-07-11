@@ -4,7 +4,7 @@ import {supabase} from '~/lib/supabase';
 import LibraryItemBuilder from '../components/Library/LibraryItemBuilder';
 
 export interface Modular {
-  modular_id: number;
+  inventory_id: number;
   created_at: Date;
   updated_at: Date;
   name: string;
