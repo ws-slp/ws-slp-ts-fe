@@ -55,7 +55,7 @@ export const mockGetAllLibraryItems: Array<
     product_code: 'sadna8h310fna1',
   },
   {
-    inventory_id: 1,
+    inventory_id: 8,
     created_at: new Date(),
     updated_at: new Date(),
     name: 'HD 450BT',

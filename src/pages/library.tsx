@@ -2,6 +2,7 @@ import Layout from '../components/Layout';
 import {useState, useEffect} from 'react';
 import {LibraryItemBuilder} from '../components/LibraryItemBuilder/LibraryItemBuilder';
 import {LibraryItem, Controller, Hardware, Book, DVD} from '~/models/models';
+import {SearchBar} from '~/components/SearchBar/SeartchBar';
 import core from '../lib/supabase/index';
 
 const Library: React.FunctionComponent = () => {
@@ -21,12 +22,23 @@ const Library: React.FunctionComponent = () => {
     <>
       <Layout>
         <h2>welcome to the library</h2>
-        {libraryItemList.map(item => (
-          <LibraryItemBuilder key={item.inventory_id} item={item} />
-        ))}
+        <SearchBar></SearchBar>
+        <div style={styles.container}>
+          {libraryItemList.map(item => (
+            <LibraryItemBuilder key={item.inventory_id} item={item} />
+          ))}
+        </div>
       </Layout>
     </>
   );
 };
 
 export default Library;
+
+const styles = {
+  container: {
+    display: 'flex',
+    justifyContent: 'space-evenly',
+    gap: '20px',
+  },
+};
