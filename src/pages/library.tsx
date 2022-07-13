@@ -2,19 +2,17 @@ import Layout from '../components/Layout';
 import {useState, useEffect} from 'react';
 import {LibraryItemBuilder} from '../components/Library/LibraryItemBuilder';
 import {LibraryItem, Controller, Hardware, Book, DVD} from '~/models/models';
-import {getAllLibraryItems} from '~/lib/supabase/library/library';
+import core from '../lib/supabase/index';
 
 const Library: React.FunctionComponent = () => {
   const [libraryItemList, setLibraryItemList] = useState<
-    LibraryItem[] | Controller[] | Hardware[] | Book[] | DVD[]
+    Array<LibraryItem | Hardware | Book | DVD | Controller>
   >([]);
 
   useEffect(() => {
     const fetchItems = async () => {
-      const response = await getAllLibraryItems();
-      if (response) {
-        setLibraryItemList(response);
-      }
+      const response = await core.library.searchLibraryItemsByName('name');
+      setLibraryItemList([...response]);
     };
     fetchItems();
   }, []);

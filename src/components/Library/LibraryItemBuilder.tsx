@@ -1,4 +1,3 @@
-import {INSPECT_MAX_BYTES} from 'buffer';
 import React from 'react';
 import {LibraryItem, Controller, Hardware, Book, DVD} from '~/models/models';
 import {Tag} from './micro/Tag';
@@ -8,7 +7,6 @@ interface ItemProps {
 }
 
 const LibraryItemBuilder: React.FunctionComponent<ItemProps> = ({item}) => {
-  console.log('item', item);
   return (
     <div key={item.inventory_id} style={styles.card}>
       <h3>{item.name}</h3>
@@ -18,9 +16,9 @@ const LibraryItemBuilder: React.FunctionComponent<ItemProps> = ({item}) => {
         <p>No image available.</p>
       )}
       <div style={styles.tagsContainer}>
-        {item.tags && item.tags.map(tag => <Tag tag={tag}></Tag>)}
+        {item.tags && item.tags.map(tag => <Tag tag={tag} key={tag}></Tag>)}
       </div>
-      <text>Availability: {item.availability}</text>
+      <span>Availability: {item.availability}</span>
     </div>
   );
 };
