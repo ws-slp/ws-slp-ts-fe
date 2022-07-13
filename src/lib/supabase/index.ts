@@ -3,6 +3,8 @@ import {
   getAllLibraryItems,
   searchLibraryItemsByName,
   searchLibraryItemByTags,
+  searchLibraryItemsByAvailability,
+  searchLibraryItemsByCategory,
 } from './library/library';
 
 const core = {
@@ -10,6 +12,8 @@ const core = {
     getAllLibraryItems,
     searchLibraryItemsByName,
     searchLibraryItemByTags,
+    searchLibraryItemsByAvailability,
+    searchLibraryItemsByCategory,
   },
 };
 

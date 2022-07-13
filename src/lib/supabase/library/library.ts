@@ -1,5 +1,7 @@
 import {
   mockGetAllLibraryItems,
+  mockSearchLibraryItemsByAvailability,
+  mockSearchLibraryItemsByCategory,
   mockSearchLibraryItemsByName,
   mockSearchLibraryItemsByTags,
 } from './mockData';
@@ -49,4 +51,38 @@ const searchLibraryItemByTags = (
   return response;
 };
 
-export {getAllLibraryItems, searchLibraryItemsByName, searchLibraryItemByTags};
+const searchLibraryItemsByCategory = (
+  category: string
+): Promise<ReadonlyArray<LibraryItem | Hardware | Book | DVD | Controller>> => {
+  const response = new Promise<
+    Array<LibraryItem | Hardware | Book | DVD | Controller>
+  >(resolve => {
+    setTimeout(() => {
+      resolve(mockSearchLibraryItemsByCategory);
+    }, 500);
+  });
+
+  return response;
+};
+
+const searchLibraryItemsByAvailability = (
+  availability: string
+): Promise<ReadonlyArray<LibraryItem | Hardware | Book | DVD | Controller>> => {
+  const response = new Promise<
+    Array<LibraryItem | Hardware | Book | DVD | Controller>
+  >(resolve => {
+    setTimeout(() => {
+      resolve(mockSearchLibraryItemsByAvailability);
+    }, 500);
+  });
+
+  return response;
+};
+
+export {
+  getAllLibraryItems,
+  searchLibraryItemsByName,
+  searchLibraryItemByTags,
+  searchLibraryItemsByAvailability,
+  searchLibraryItemsByCategory,
+};

@@ -152,3 +152,49 @@ export const mockSearchLibraryItemsByTags: Array<
     weight: 1.5,
   },
 ];
+
+export const mockSearchLibraryItemsByCategory: Array<
+  LibraryItem | Hardware | Book | DVD | Controller
+> = [
+  {
+    inventory_id: 6,
+    created_at: new Date(),
+    updated_at: new Date(),
+    name: 'The Synthesizer',
+    quantity: 1,
+    image_url:
+      'https://images-na.ssl-images-amazon.com/images/I/91E1s-Qq56L.jpg',
+    availability: 'in stock',
+    tags: ['book', 'synth'],
+    description:
+      'The Roland Company, founded in 1972, was one of the earliest manufacturers of music synthesizers, and has shaped electronic music immeasurably.',
+    accessories: null,
+    author: 'Roland',
+    publish_date: new Date(),
+    publisher: 'Roland',
+    product_code: 'sadna8h310fna1',
+  },
+];
+
+export const mockSearchLibraryItemsByAvailability: Array<
+  LibraryItem | Hardware | Book | DVD | Controller
+> = [
+  {
+    inventory_id: 6,
+    created_at: new Date(),
+    updated_at: new Date(),
+    name: 'The Synthesizer',
+    quantity: 1,
+    image_url:
+      'https://images-na.ssl-images-amazon.com/images/I/91E1s-Qq56L.jpg',
+    availability: 'in stock',
+    tags: ['book', 'synth'],
+    description:
+      'The Roland Company, founded in 1972, was one of the earliest manufacturers of music synthesizers, and has shaped electronic music immeasurably.',
+    accessories: null,
+    author: 'Roland',
+    publish_date: new Date(),
+    publisher: 'Roland',
+    product_code: 'sadna8h310fna1',
+  },
+];
