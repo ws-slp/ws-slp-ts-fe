@@ -22,7 +22,7 @@ const Library: React.FunctionComponent = () => {
     <>
       <Layout>
         <h2>welcome to the library</h2>
-        <SearchBar></SearchBar>
+        <SearchBar />
         <div style={styles.container}>
           {libraryItemList.map(item => (
             <LibraryItemBuilder key={item.inventory_id} item={item} />
