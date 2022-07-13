@@ -24,7 +24,7 @@ export const mockGetAllLibraryItems:
     weight: 1.5,
   },
   {
-    inventory_id: 1,
+    inventory_id: 2,
     created_at: new Date(),
     updated_at: new Date(),
     name: 'Digitakt',
@@ -41,7 +41,7 @@ export const mockGetAllLibraryItems:
     weight: 1.5,
   },
   {
-    inventory_id: 1,
+    inventory_id: 3,
     created_at: new Date(),
     updated_at: new Date(),
     name: 'Digitakt',
