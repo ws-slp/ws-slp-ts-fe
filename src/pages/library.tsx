@@ -11,9 +11,7 @@ const Library: React.FunctionComponent = () => {
 
   useEffect(() => {
     const fetchItems = async () => {
-      const response = await core.library.searchLibraryItemByTags([
-        'something',
-      ]);
+      const response = await core.library.getAllLibraryItems();
       setLibraryItemList([...response]);
     };
     fetchItems();
