@@ -1,4 +1,8 @@
-import {mockGetAllLibraryItems, mockSearchLibraryItemsByName} from './mockData';
+import {
+  mockGetAllLibraryItems,
+  mockSearchLibraryItemsByName,
+  mockSearchLibraryItemsByTags,
+} from './mockData';
 import {LibraryItem, Hardware, Book, DVD, Controller} from '~/models/models';
 
 //Stub Cloud Functions for the Library Page
@@ -7,7 +11,7 @@ const getAllLibraryItems = (): Promise<
   ReadonlyArray<LibraryItem | Hardware | Book | DVD | Controller>
 > => {
   const response = new Promise<
-    LibraryItem[] | Hardware[] | Book[] | DVD[] | Controller[]
+    Array<LibraryItem | Hardware | Book | DVD | Controller>
   >(resolve => {
     setTimeout(() => {
       resolve(mockGetAllLibraryItems);
@@ -21,7 +25,7 @@ const searchLibraryItemsByName = (
   name: string
 ): Promise<ReadonlyArray<LibraryItem | Hardware | Book | DVD | Controller>> => {
   const response = new Promise<
-    LibraryItem[] | Hardware[] | Book[] | DVD[] | Controller[]
+    Array<LibraryItem | Hardware | Book | DVD | Controller>
   >(resolve => {
     setTimeout(() => {
       resolve(mockSearchLibraryItemsByName);
@@ -31,4 +35,18 @@ const searchLibraryItemsByName = (
   return response;
 };
 
-export {getAllLibraryItems, searchLibraryItemsByName};
+const searchLibraryItemByTags = (
+  tags: string[]
+): Promise<ReadonlyArray<LibraryItem | Hardware | Book | DVD | Controller>> => {
+  const response = new Promise<
+    Array<LibraryItem | Hardware | Book | DVD | Controller>
+  >(resolve => {
+    setTimeout(() => {
+      resolve(mockSearchLibraryItemsByTags);
+    }, 500);
+  });
+
+  return response;
+};
+
+export {getAllLibraryItems, searchLibraryItemsByName, searchLibraryItemByTags};

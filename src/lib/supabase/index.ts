@@ -1,10 +1,15 @@
 export * from './supabase';
-import {getAllLibraryItems, searchLibraryItemsByName} from './library/library';
+import {
+  getAllLibraryItems,
+  searchLibraryItemsByName,
+  searchLibraryItemByTags,
+} from './library/library';
 
 const core = {
   library: {
     getAllLibraryItems,
     searchLibraryItemsByName,
+    searchLibraryItemByTags,
   },
 };
 

@@ -1,6 +1,6 @@
 import Layout from '../components/Layout';
 import {useState, useEffect} from 'react';
-import {LibraryItemBuilder} from '../components/Library/LibraryItemBuilder';
+import {LibraryItemBuilder} from '../components/LibraryItemBuilder/LibraryItemBuilder';
 import {LibraryItem, Controller, Hardware, Book, DVD} from '~/models/models';
 import core from '../lib/supabase/index';
 
@@ -11,7 +11,9 @@ const Library: React.FunctionComponent = () => {
 
   useEffect(() => {
     const fetchItems = async () => {
-      const response = await core.library.searchLibraryItemsByName('name');
+      const response = await core.library.searchLibraryItemByTags([
+        'something',
+      ]);
       setLibraryItemList([...response]);
     };
     fetchItems();
