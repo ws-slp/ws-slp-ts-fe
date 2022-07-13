@@ -1,9 +1,9 @@
 import React from 'react';
-import {Modular} from '../../pages/library';
+import {LibraryItem, Controller, Hardware, Book, DVD} from '~/models/models';
 
 /* ItemProps will eventually be a union type; eg. item: Modular | Book | DVD | ..., */
 interface ItemProps {
-  item: Modular;
+  item: Controller | Hardware | Book | DVD | LibraryItem;
 }
 
 const LibraryItemBuilder: React.FunctionComponent<ItemProps> = ({item}) => {
