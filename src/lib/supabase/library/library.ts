@@ -4,6 +4,7 @@ import {
   mockSearchLibraryItemsByCategory,
   mockSearchLibraryItemsByName,
   mockSearchLibraryItemsByTags,
+  mockSearchAllLibraryItems,
 } from './mockData';
 import {LibraryItem, Hardware, Book, DVD, Controller} from '~/models/models';
 
@@ -79,10 +80,29 @@ const searchLibraryItemsByAvailability = (
   return response;
 };
 
+const searchAllLibraryItems = (
+  name: string,
+  tags: string[],
+  category: string,
+  availability: string
+): Promise<ReadonlyArray<LibraryItem | Hardware | Book | DVD | Controller>> => {
+  const response = new Promise<
+    Array<LibraryItem | Hardware | Book | DVD | Controller>
+  >(resolve => {
+    setTimeout(() => {
+      resolve(mockSearchAllLibraryItems);
+    }, 500);
+  });
+
+  console.log(response, 'response');
+  return response;
+};
+
 export {
   getAllLibraryItems,
   searchLibraryItemsByName,
   searchLibraryItemByTags,
   searchLibraryItemsByAvailability,
   searchLibraryItemsByCategory,
+  searchAllLibraryItems,
 };

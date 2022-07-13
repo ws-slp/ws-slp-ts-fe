@@ -5,6 +5,7 @@ import {
   searchLibraryItemByTags,
   searchLibraryItemsByAvailability,
   searchLibraryItemsByCategory,
+  searchAllLibraryItems,
 } from './library/library';
 
 const core = {
@@ -14,6 +15,7 @@ const core = {
     searchLibraryItemByTags,
     searchLibraryItemsByAvailability,
     searchLibraryItemsByCategory,
+    searchAllLibraryItems,
   },
 };
 
