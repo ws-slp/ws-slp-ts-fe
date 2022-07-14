@@ -1,12 +1,20 @@
 import React from 'react';
 import {useSearchFormFields} from '../../lib/utils';
 import DropDown from './micro/DropDown';
+import {DropDownProps} from './micro/DropDown';
 
 interface SearchBarState {
   name: string;
   category: string;
   availability: string;
   tags: string[];
+}
+interface SearchBarProps {
+  dropDownMeta: ReadonlyArray<DropDownMeta>;
+}
+interface DropDownMeta {
+  label: string;
+  items: string[];
 }
 
 const initialFormState = {
@@ -16,28 +24,34 @@ const initialFormState = {
   tags: [],
 };
 
-const mockDropDownProps = {
-  label: 'category',
-  items: ['hardware', 'books'],
-};
-const mockDropDownProps2 = {
-  label: 'availability',
-  items: ['in stock', 'search all', 'overdue'],
-};
-const mockDropDownProps3 = {
-  label: 'tags',
-  items: ['synth', 'keyboard', 'books'],
-};
+const mockDropDownProps = [
+  {
+    label: 'category',
+    items: ['hardware', 'books'],
+  },
+  {
+    label: 'availability',
+    items: ['in stock', 'search all', 'overdue'],
+  },
+  {
+    label: 'tags',
+    items: ['synth', 'keyboard', 'books'],
+  },
+];
 
-const SearchBar = () => {
+const SearchBar = ({dropDownMeta}: SearchBarProps) => {
   const [values, handleChange, resetFormFields] =
     useSearchFormFields<SearchBarState>(initialFormState);
-  console.log('values', values);
   return (
     <section className={styles.section}>
-      <DropDown props={{...mockDropDownProps, handleChange}} />
-      <DropDown props={{...mockDropDownProps3, handleChange}} />
-      <DropDown props={{...mockDropDownProps2, handleChange}} />
+      {dropDownMeta.map(searchProps => {
+        return (
+          <DropDown
+            props={{...searchProps, handleChange}}
+            key={searchProps.label}
+          />
+        );
+      })}
       <input
         type="text"
         name="name"

@@ -1,6 +1,6 @@
 import React, {ChangeEventHandler} from 'react';
 
-interface DropDownProps {
+export interface DropDownProps {
   props: {
     label: string;
     items: string[];

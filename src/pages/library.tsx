@@ -18,11 +18,26 @@ const Library: React.FunctionComponent = () => {
     fetchItems();
   }, []);
 
+  const mockDropDownProps = [
+    {
+      label: 'category',
+      items: ['hardware', 'books'],
+    },
+    {
+      label: 'availability',
+      items: ['in stock', 'search all', 'overdue'],
+    },
+    {
+      label: 'tags',
+      items: ['synth', 'keyboard', 'books'],
+    },
+  ];
+
   return (
     <>
       <Layout>
         <h2>welcome to the library</h2>
-        <SearchBar />
+        <SearchBar dropDownMeta={mockDropDownProps} />
         <div style={styles.container}>
           {libraryItemList.map(item => (
             <LibraryItemBuilder key={item.inventory_id} item={item} />
