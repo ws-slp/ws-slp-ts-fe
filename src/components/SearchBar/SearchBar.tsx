@@ -24,27 +24,35 @@ const mockDropDownProps2 = {
   label: 'availability',
   items: ['in stock', 'out of stock', 'overdue'],
 };
+const mockDropDownProps3 = {
+  label: 'tags',
+  items: ['synth', 'keyboard', 'books'],
+};
 
 const SearchBar = () => {
   const [values, handleChange, resetFormFields] =
     useFormFields<SearchBarState>(initialFormState);
 
-  console.log('values', values);
-
   return (
     <div>
       <DropDown props={mockDropDownProps} />
       <DropDown props={mockDropDownProps2} />
+      <DropDown props={mockDropDownProps3} />
       <input
         type="text"
         name="name"
-        className="bg-neutral-focus"
+        className={styles.input}
         value={values.name}
         onChange={handleChange}
       />
-      <button className="btn">Submit</button>
+      <button className={styles.button}>Submit</button>
     </div>
   );
 };
 
 export {SearchBar};
+
+const styles = {
+  input: 'bg-neutral-focus',
+  button: 'btn',
+};

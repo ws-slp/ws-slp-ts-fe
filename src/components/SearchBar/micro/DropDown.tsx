@@ -1,5 +1,4 @@
 import React from 'react';
-import {getAllLibraryItems} from '~/lib/supabase/library/library';
 
 interface DropDownProps {
   props: {
@@ -10,14 +9,11 @@ interface DropDownProps {
 
 export default function DropDown({props}: DropDownProps) {
   return (
-    <div className="dropdown dropdown">
+    <div className={styles.div}>
       <label tabIndex={0} className="btn m-1">
         {props.label}
       </label>
-      <ul
-        tabIndex={0}
-        className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
-      >
+      <ul tabIndex={0} className={styles.ul}>
         {props.items.map(item => {
           return (
             <li>
@@ -29,3 +25,8 @@ export default function DropDown({props}: DropDownProps) {
     </div>
   );
 }
+
+const styles = {
+  div: 'dropdown dropdown',
+  ul: 'dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52',
+};
