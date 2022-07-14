@@ -1,13 +1,15 @@
-import React from 'react';
-import {useSearchFormFields} from '../../lib/utils';
+import React, {useEffect} from 'react';
+import {uniqueArray, useSearchFormFields} from './utils';
 import DropDown from './micro/DropDown';
-import {DropDownProps} from './micro/DropDown';
+import {useState} from 'react';
+import {Tag} from '../LibraryItemBuilder/micro/Tag';
+import {TagsBuilder} from './micro/TagsBuilder';
 
-interface SearchBarState {
+export interface SearchBarState {
   name: string;
   category: string;
   availability: string;
-  tags: string[];
+  tags: string;
 }
 interface SearchBarProps {
   dropDownMeta: ReadonlyArray<DropDownMeta>;
@@ -21,46 +23,42 @@ const initialFormState = {
   name: '',
   category: '',
   availability: '',
-  tags: [],
+  tags: '',
 };
-
-const mockDropDownProps = [
-  {
-    label: 'category',
-    items: ['hardware', 'books'],
-  },
-  {
-    label: 'availability',
-    items: ['in stock', 'search all', 'overdue'],
-  },
-  {
-    label: 'tags',
-    items: ['synth', 'keyboard', 'books'],
-  },
-];
 
 const SearchBar = ({dropDownMeta}: SearchBarProps) => {
   const [values, handleChange, resetFormFields] =
     useSearchFormFields<SearchBarState>(initialFormState);
+
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+
+  useEffect(() => {
+    const newTagsArray: string[] = [...selectedTags, values.tags];
+    setSelectedTags(uniqueArray(newTagsArray));
+  }, [values.tags]);
+
   return (
-    <section className={styles.section}>
-      {dropDownMeta.map(searchProps => {
-        return (
-          <DropDown
-            props={{...searchProps, handleChange}}
-            key={searchProps.label}
-          />
-        );
-      })}
-      <input
-        type="text"
-        name="name"
-        className={styles.input}
-        value={values.name}
-        onChange={handleChange}
-      />
-      <button className={styles.button}>Submit</button>
-    </section>
+    <>
+      <section className={styles.section}>
+        {dropDownMeta.map(searchProps => {
+          return (
+            <DropDown
+              props={{...searchProps, handleChange}}
+              key={searchProps.label}
+            />
+          );
+        })}
+        <input
+          type="text"
+          name="name"
+          className={styles.input}
+          value={values.name}
+          onChange={handleChange}
+        />
+        <button className={styles.button}>Submit</button>
+      </section>
+      <TagsBuilder selectedTags={selectedTags} />
+    </>
   );
 };
 
