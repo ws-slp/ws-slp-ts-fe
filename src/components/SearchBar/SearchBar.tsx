@@ -1,8 +1,7 @@
-import React, {useEffect} from 'react';
-import {uniqueArray, useSearchFormFields} from './utils';
+import React, {MouseEventHandler, useEffect} from 'react';
+import {removeItem, uniqueArray, useSearchFormFields} from './utils';
 import DropDown from './micro/DropDown';
 import {useState} from 'react';
-import {Tag} from '../LibraryItemBuilder/micro/Tag';
 import {TagsBuilder} from './micro/TagsBuilder';
 
 export interface SearchBarState {
@@ -33,9 +32,17 @@ const SearchBar = ({dropDownMeta}: SearchBarProps) => {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   useEffect(() => {
-    const newTagsArray: string[] = [...selectedTags, values.tags];
-    setSelectedTags(uniqueArray(newTagsArray));
+    const currentTagsArray: string[] = [...selectedTags, values.tags];
+    setSelectedTags(uniqueArray(currentTagsArray));
   }, [values.tags]);
+
+  const handleTagDelete = (tag: string): void => {
+    const currentTagsArray: string[] = removeItem(selectedTags, tag);
+    console.log('currentTagsArray', currentTagsArray);
+    setSelectedTags(currentTagsArray);
+  };
+
+  console.log('removeItem', removeItem(['a', 'b', 'c'], 'b'));
 
   return (
     <>
@@ -57,7 +64,10 @@ const SearchBar = ({dropDownMeta}: SearchBarProps) => {
         />
         <button className={styles.button}>Submit</button>
       </section>
-      <TagsBuilder selectedTags={selectedTags} />
+      <TagsBuilder
+        selectedTags={selectedTags}
+        handleTagDelete={handleTagDelete}
+      />
     </>
   );
 };

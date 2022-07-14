@@ -3,13 +3,14 @@ import {Tag} from '~/components/LibraryItemBuilder/micro/Tag';
 
 interface TagsBuilderProps {
   selectedTags: string[];
+  handleTagDelete?: (tag: string) => void;
 }
-const TagsBuilder = ({selectedTags}: TagsBuilderProps) => {
+const TagsBuilder = ({selectedTags, handleTagDelete}: TagsBuilderProps) => {
   return (
     <div>
       {selectedTags.map(tag => {
         if (tag) {
-          return <Tag tag={tag} key={tag}></Tag>;
+          return <Tag tag={tag} key={tag} handleTagDelete={handleTagDelete} />;
         }
       })}
     </div>

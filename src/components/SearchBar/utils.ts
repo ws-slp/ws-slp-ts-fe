@@ -31,9 +31,6 @@ export const uniqueArray = (array: any[]) => {
 
 export const removeItem = (array: any[], itemToBeRemoved: any) => {
   return array.filter(item => {
-    if (!array.includes(itemToBeRemoved)) {
-      return item;
-    }
-    return;
+    return item !== itemToBeRemoved;
   });
 };
