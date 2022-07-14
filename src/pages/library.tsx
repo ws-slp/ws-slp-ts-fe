@@ -38,7 +38,7 @@ const Library: React.FunctionComponent = () => {
       <Layout>
         <h2>welcome to the library</h2>
         <SearchBar dropDownMeta={mockDropDownProps} />
-        <div style={styles.container}>
+        <div className={styles.container}>
           {libraryItemList.map(item => (
             <LibraryItemBuilder key={item.inventory_id} item={item} />
           ))}
@@ -51,9 +51,5 @@ const Library: React.FunctionComponent = () => {
 export default Library;
 
 const styles = {
-  container: {
-    display: 'flex',
-    justifyContent: 'space-evenly',
-    gap: '20px',
-  },
+  container: 'flex flex-row flex-wrap',
 };
