@@ -55,5 +55,6 @@ export {SearchBar};
 const styles = {
   input: 'bg-neutral-focus m-5',
   button: 'btn m-5',
-  section: 'flex m-10 border-solid border-2 border-sky-500 p-5',
+  section:
+    'flex flex-row flex-wrap m-1 border-solid border-2 border-sky-500 p-1 justify-left',
 };

@@ -38,5 +38,5 @@ const styles = {
   section: 'flex-row',
   div: '',
   select:
-    'dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 select-ghost',
+    'dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 select-ghost m-1',
 };
