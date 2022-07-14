@@ -1,5 +1,5 @@
 import React from 'react';
-import {useFormFields} from '../../lib/utils';
+import {useSearchFormFields} from '../../lib/utils';
 import DropDown from './micro/DropDown';
 
 interface SearchBarState {
@@ -18,11 +18,11 @@ const initialFormState = {
 
 const mockDropDownProps = {
   label: 'category',
-  items: ['item1', 'item2'],
+  items: ['hardware', 'books'],
 };
 const mockDropDownProps2 = {
   label: 'availability',
-  items: ['in stock', 'out of stock', 'overdue'],
+  items: ['in stock', 'search all', 'overdue'],
 };
 const mockDropDownProps3 = {
   label: 'tags',
@@ -31,13 +31,13 @@ const mockDropDownProps3 = {
 
 const SearchBar = () => {
   const [values, handleChange, resetFormFields] =
-    useFormFields<SearchBarState>(initialFormState);
-
+    useSearchFormFields<SearchBarState>(initialFormState);
+  console.log('values', values);
   return (
-    <div>
-      <DropDown props={mockDropDownProps} />
-      <DropDown props={mockDropDownProps2} />
-      <DropDown props={mockDropDownProps3} />
+    <section className={styles.section}>
+      <DropDown props={{...mockDropDownProps, handleChange}} />
+      <DropDown props={{...mockDropDownProps3, handleChange}} />
+      <DropDown props={{...mockDropDownProps2, handleChange}} />
       <input
         type="text"
         name="name"
@@ -46,13 +46,14 @@ const SearchBar = () => {
         onChange={handleChange}
       />
       <button className={styles.button}>Submit</button>
-    </div>
+    </section>
   );
 };
 
 export {SearchBar};
 
 const styles = {
-  input: 'bg-neutral-focus',
-  button: 'btn',
+  input: 'bg-neutral-focus m-5',
+  button: 'btn m-5',
+  section: 'flex m-10 border-solid border-2 border-sky-500 p-5',
 };

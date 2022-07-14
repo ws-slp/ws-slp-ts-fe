@@ -94,7 +94,6 @@ const searchAllLibraryItems = (
     }, 500);
   });
 
-  console.log(response, 'response');
   return response;
 };
 

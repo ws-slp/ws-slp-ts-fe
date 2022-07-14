@@ -1,32 +1,42 @@
-import React from 'react';
+import React, {ChangeEventHandler} from 'react';
 
 interface DropDownProps {
   props: {
     label: string;
     items: string[];
+    handleChange: ChangeEventHandler<HTMLSelectElement>;
   };
 }
 
 export default function DropDown({props}: DropDownProps) {
   return (
-    <div className={styles.div}>
-      <label tabIndex={0} className="btn m-1">
-        {props.label}
-      </label>
-      <ul tabIndex={0} className={styles.ul}>
-        {props.items.map(item => {
-          return (
-            <li>
-              <a>{item}</a>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+    <section className={styles.section}>
+      <div className={styles.div}>
+        <label tabIndex={0} className="m-1">
+          {`${props.label}:`}
+        </label>
+        <select
+          tabIndex={0}
+          className={styles.select}
+          onChange={props.handleChange}
+          name={props.label}
+        >
+          {props.items.map(item => {
+            return (
+              <option value={item} key={item}>
+                {item}
+              </option>
+            );
+          })}
+        </select>
+      </div>
+    </section>
   );
 }
 
 const styles = {
-  div: 'dropdown dropdown',
-  ul: 'dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52',
+  section: 'flex-row',
+  div: '',
+  select:
+    'dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 select-ghost',
 };
