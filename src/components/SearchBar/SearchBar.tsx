@@ -42,7 +42,7 @@ const SearchBar = ({dropDownMeta}: SearchBarProps) => {
     setSelectedTags(currentTagsArray);
   };
 
-  console.log('removeItem', removeItem(['a', 'b', 'c'], 'b'));
+  console.log('values', values);
 
   return (
     <>
