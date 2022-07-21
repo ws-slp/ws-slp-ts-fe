@@ -1,8 +1,10 @@
-import React, {MouseEventHandler, useEffect} from 'react';
+import React, {Dispatch, SetStateAction, useEffect} from 'react';
 import {removeItem, uniqueArray, useSearchFormFields} from './utils';
 import DropDown from './micro/DropDown';
 import {useState} from 'react';
 import {TagsBuilder} from './micro/TagsBuilder';
+import {DVD, Hardware, LibraryItem, Book, Controller} from '~/models/models';
+import core from '~/lib/supabase';
 
 export interface SearchBarState {
   name: string;
@@ -12,6 +14,9 @@ export interface SearchBarState {
 }
 interface SearchBarProps {
   dropDownMeta: ReadonlyArray<DropDownMeta>;
+  setLibraryItemList: Dispatch<
+    SetStateAction<(LibraryItem | Hardware | Book | DVD | Controller)[]>
+  >;
 }
 interface DropDownMeta {
   label: string;
@@ -25,7 +30,7 @@ const initialFormState = {
   tags: '',
 };
 
-const SearchBar = ({dropDownMeta}: SearchBarProps) => {
+const SearchBar = ({dropDownMeta, setLibraryItemList}: SearchBarProps) => {
   const [values, handleChange, resetFormFields] =
     useSearchFormFields<SearchBarState>(initialFormState);
 
@@ -34,15 +39,56 @@ const SearchBar = ({dropDownMeta}: SearchBarProps) => {
   useEffect(() => {
     const currentTagsArray: string[] = [...selectedTags, values.tags];
     setSelectedTags(uniqueArray(currentTagsArray));
-  }, [values.tags]);
+    handleNewSearch();
+  }, [values]);
 
   const handleTagDelete = (tag: string): void => {
     const currentTagsArray: string[] = removeItem(selectedTags, tag);
     console.log('currentTagsArray', currentTagsArray);
     setSelectedTags(currentTagsArray);
   };
-
   console.log('values', values);
+
+  // NEED TO MOVE THIS FUNCTION OUT OF HERE.
+  const handleNewSearch = () => {
+    const {category, availability, tags, name} = values;
+    if (category && name) {
+      const fetchItems = async () => {
+        const response = await core.library.searchAllLibraryItems(
+          name,
+          selectedTags,
+          category,
+          availability
+        );
+        setLibraryItemList([...response]);
+      };
+      fetchItems();
+    }
+    if (name) {
+      const fetchItems = async () => {
+        const response = await core.library.searchLibraryItemsByName(name);
+        setLibraryItemList([...response]);
+      };
+      fetchItems();
+    } else if (tags) {
+      const fetchItems = async () => {
+        const response = await core.library.searchLibraryItemByTags(
+          selectedTags
+        );
+        setLibraryItemList([...response]);
+      };
+      fetchItems();
+    } else if (availability) {
+      const fetchItems = async () => {
+        const response = await core.library.searchLibraryItemsByAvailability(
+          availability
+        );
+        setLibraryItemList([...response]);
+      };
+      fetchItems();
+    }
+    return;
+  };
 
   return (
     <>

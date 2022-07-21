@@ -37,7 +37,10 @@ const Library: React.FunctionComponent = () => {
     <>
       <Layout>
         <h2>welcome to the library</h2>
-        <SearchBar dropDownMeta={mockDropDownProps} />
+        <SearchBar
+          dropDownMeta={mockDropDownProps}
+          setLibraryItemList={setLibraryItemList}
+        />
         <div className={styles.container}>
           {libraryItemList.map(item => (
             <LibraryItemBuilder key={item.inventory_id} item={item} />
