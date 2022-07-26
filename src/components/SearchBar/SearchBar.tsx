@@ -18,7 +18,7 @@ interface SearchBarProps {
     SetStateAction<(LibraryItem | Hardware | Book | DVD | Controller)[]>
   >;
 }
-interface DropDownMeta {
+export interface DropDownMeta {
   label: string;
   items: string[];
 }
@@ -36,21 +36,21 @@ const SearchBar = ({dropDownMeta, setLibraryItemList}: SearchBarProps) => {
 
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
+  const [inputValue, setInputValue] = useState('');
+
   useEffect(() => {
     const currentTagsArray: string[] = [...selectedTags, values.tags];
     setSelectedTags(uniqueArray(currentTagsArray));
-    handleNewSearch();
+    const results = handleNewSearch(values);
   }, [values]);
 
   const handleTagDelete = (tag: string): void => {
     const currentTagsArray: string[] = removeItem(selectedTags, tag);
-    console.log('currentTagsArray', currentTagsArray);
     setSelectedTags(currentTagsArray);
   };
-  console.log('values', values);
 
   // NEED TO MOVE THIS FUNCTION OUT OF HERE.
-  const handleNewSearch = () => {
+  const handleNewSearch = (values: any) => {
     const {category, availability, tags, name} = values;
     if (category && name) {
       const fetchItems = async () => {
@@ -89,6 +89,8 @@ const SearchBar = ({dropDownMeta, setLibraryItemList}: SearchBarProps) => {
     }
     return;
   };
+  console.log('values', values);
+  console.log('inputValue', inputValue);
 
   return (
     <>
@@ -101,19 +103,21 @@ const SearchBar = ({dropDownMeta, setLibraryItemList}: SearchBarProps) => {
             />
           );
         })}
-        <input
-          type="text"
-          name="name"
-          className={styles.input}
-          value={values.name}
-          onChange={handleChange}
+        <label>
+          <input
+            type="text"
+            name="name"
+            className={styles.input}
+            value={values.name}
+            onChange={handleChange}
+          />
+          <button className={styles.button}>Submit</button>
+        </label>
+        <TagsBuilder
+          selectedTags={selectedTags}
+          handleTagDelete={handleTagDelete}
         />
-        <button className={styles.button}>Submit</button>
       </section>
-      <TagsBuilder
-        selectedTags={selectedTags}
-        handleTagDelete={handleTagDelete}
-      />
     </>
   );
 };

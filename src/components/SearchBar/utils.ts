@@ -1,4 +1,8 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-ignore
 import {useState} from 'react';
+import {LibraryItem, Hardware, Book, DVD, Controller} from '~/models/models';
+import {MouseEvent} from 'react';
 
 export function useSearchFormFields<T>(
   initialValues: T
@@ -33,4 +37,24 @@ export const removeItem = (array: any[], itemToBeRemoved: any) => {
   return array.filter(item => {
     return item !== itemToBeRemoved;
   });
+};
+
+export const dropDownPropGetter = (
+  libraryItems: Array<LibraryItem | Hardware | Book | DVD | Controller>,
+  label: 'tags' | 'availability'
+) => {
+  const dropDownProp = libraryItems.reduce(
+    (acc, next) => {
+      if (typeof next[label] === 'string') {
+        return {...acc, label, items: uniqueArray([...acc.items, next[label]])};
+      }
+      return {
+        ...acc,
+        label,
+        items: uniqueArray([...acc.items, ...(next[label] as Array<string>)]),
+      };
+    },
+    {label, items: []}
+  );
+  return dropDownProp;
 };

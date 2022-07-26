@@ -2,13 +2,15 @@ import Layout from '../components/Layout';
 import {useState, useEffect} from 'react';
 import {LibraryItemBuilder} from '../components/LibraryItemBuilder/LibraryItemBuilder';
 import {LibraryItem, Controller, Hardware, Book, DVD} from '~/models/models';
-import {SearchBar} from '~/components/SearchBar/SearchBar';
+import {DropDownMeta, SearchBar} from '~/components/SearchBar/SearchBar';
 import core from '../lib/supabase/index';
+import {dropDownPropGetter} from '~/components/SearchBar/utils';
 
 const Library: React.FunctionComponent = () => {
   const [libraryItemList, setLibraryItemList] = useState<
     Array<LibraryItem | Hardware | Book | DVD | Controller>
   >([]);
+  const [dropDownProps, setDropDownProps] = useState<Array<DropDownMeta>>([]);
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -18,27 +20,31 @@ const Library: React.FunctionComponent = () => {
     fetchItems();
   }, []);
 
-  const mockDropDownProps = [
-    {
-      label: 'category',
-      items: ['hardware', 'books'],
-    },
-    {
-      label: 'availability',
-      items: ['in stock', 'search all', 'overdue'],
-    },
-    {
-      label: 'tags',
-      items: ['synth', 'keyboard', 'books'],
-    },
-  ];
+  useEffect(() => {
+    const setProps = async () => {
+      const tagsDropDownProp = dropDownPropGetter(libraryItemList, 'tags');
+      const availabilityDropDownProp = dropDownPropGetter(
+        libraryItemList,
+        'availability'
+      );
+      setDropDownProps([
+        {
+          label: 'category',
+          items: ['hardware', 'books'],
+        },
+        availabilityDropDownProp,
+        tagsDropDownProp,
+      ]);
+    };
+    setProps();
+  }, [libraryItemList]);
 
   return (
     <>
       <Layout>
         <h2>welcome to the library</h2>
         <SearchBar
-          dropDownMeta={mockDropDownProps}
+          dropDownMeta={dropDownProps}
           setLibraryItemList={setLibraryItemList}
         />
         <div className={styles.container}>

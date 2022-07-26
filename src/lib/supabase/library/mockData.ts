@@ -28,7 +28,7 @@ export const mockGetAllLibraryItems: Array<
     quantity: 1,
     image_url:
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUm6pf5a6ovHD0bA2ghMhZ01Iw4oreF8sB514RWR1bI-9I0tvyhqFbY8kaKukrnmIToRg&usqp=CAU',
-    availability: 'in stock',
+    availability: 'out of stock',
     tags: ['controller', 'keyboard'],
     description:
       'IK Multimedia/s iRig Keys I/O combines a 25-key MIDI controller with an integrated audio interface to give you an all-in-one music production workstation that you can take anywhere. Compatible with iPhone, iPad, and Mac, it offers a full range of professional features, but keeps your setup clean and simple to help you focus on the music.',
@@ -44,7 +44,7 @@ export const mockGetAllLibraryItems: Array<
     quantity: 1,
     image_url:
       'https://images-na.ssl-images-amazon.com/images/I/91E1s-Qq56L.jpg',
-    availability: 'in stock',
+    availability: 'over due',
     tags: ['book', 'synth'],
     description:
       'The Roland Company, founded in 1972, was one of the earliest manufacturers of music synthesizers, and has shaped electronic music immeasurably.',

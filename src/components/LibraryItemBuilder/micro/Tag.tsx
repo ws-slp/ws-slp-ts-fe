@@ -6,7 +6,6 @@ interface TagProps {
 }
 const Tag = ({tag, handleTagDelete}: TagProps) => {
   const handleClick = () => {
-    console.log('tag', tag);
     if (handleTagDelete) {
       handleTagDelete(tag);
     }
@@ -14,7 +13,7 @@ const Tag = ({tag, handleTagDelete}: TagProps) => {
   return (
     <div className={styles.tag}>
       {tag}
-      <button onClick={handleClick}>x</button>
+      {handleTagDelete && <button onClick={handleClick}>x</button>}
     </div>
   );
 };
