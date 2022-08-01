@@ -60,20 +60,58 @@ export const dropDownPropGetter = (
   return dropDownProp;
 };
 
+const truthyCounter = (values: SearchBarState): number => {
+  const total: number = Object.values(values).reduce((acc, value) => {
+    console.log('value', value);
+    if (value) {
+      return (acc += 1);
+    }
+    return acc;
+  }, 0);
+  return total;
+};
+
 export const handleNewSearch = async (
   values: SearchBarState,
   selectedTags: string[]
 ): Promise<Array<LibraryItem | Hardware | Book | DVD | Controller>> => {
   const {category, availability, tags, name} = values;
-
   try {
-    const response = await core.library.searchAllLibraryItems(
-      name,
-      selectedTags,
-      category,
-      availability
-    );
-    return [...response];
+    if (truthyCounter(values) >= 2) {
+      const response = await core.library.searchAllLibraryItems(
+        name,
+        selectedTags,
+        category,
+        availability
+      );
+      return [...response];
+    }
+
+    if (category) {
+      const response = await core.library.searchLibraryItemsByCategory(
+        category
+      );
+      return [...response];
+    }
+
+    if (availability) {
+      const response = await core.library.searchLibraryItemsByAvailability(
+        availability
+      );
+      return [...response];
+    }
+
+    if (name) {
+      const response = await core.library.searchLibraryItemsByName(name);
+      return [...response];
+    }
+
+    if (selectedTags.length > 0) {
+      const response = await core.library.searchLibraryItemByTags(selectedTags);
+      return [...response];
+    }
+
+    return [];
   } catch (err) {
     console.error(err);
     return [];

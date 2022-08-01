@@ -50,10 +50,6 @@ const SearchBar = ({dropDownMeta, setLibraryItemList}: SearchBarProps) => {
       setLibraryItemList(results);
     };
     fetchSearchItems();
-
-    return () => {
-      resetFormFields();
-    };
   }, [values]);
 
   const handleTagDelete = (tag: string): void => {

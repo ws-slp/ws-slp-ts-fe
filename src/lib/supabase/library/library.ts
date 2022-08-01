@@ -21,7 +21,6 @@ const getAllLibraryItems = (): Promise<
     }, 500);
   });
 
-  console.log(response, 'response');
   return response;
 };
 const searchLibraryItemsByName = (
