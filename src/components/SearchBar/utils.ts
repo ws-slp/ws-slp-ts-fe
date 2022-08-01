@@ -2,7 +2,8 @@
 // @ts-ignore
 import {useState} from 'react';
 import {LibraryItem, Hardware, Book, DVD, Controller} from '~/models/models';
-import {MouseEvent} from 'react';
+import {SearchBarState} from './SearchBar';
+import core from '~/lib/supabase';
 
 export function useSearchFormFields<T>(
   initialValues: T
@@ -57,4 +58,24 @@ export const dropDownPropGetter = (
     {label, items: []}
   );
   return dropDownProp;
+};
+
+export const handleNewSearch = async (
+  values: SearchBarState,
+  selectedTags: string[]
+): Promise<Array<LibraryItem | Hardware | Book | DVD | Controller>> => {
+  const {category, availability, tags, name} = values;
+
+  try {
+    const response = await core.library.searchAllLibraryItems(
+      name,
+      selectedTags,
+      category,
+      availability
+    );
+    return [...response];
+  } catch (err) {
+    console.error(err);
+    return [];
+  }
 };

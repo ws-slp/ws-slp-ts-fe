@@ -1,10 +1,14 @@
 import React, {Dispatch, SetStateAction, useEffect} from 'react';
-import {removeItem, uniqueArray, useSearchFormFields} from './utils';
+import {
+  removeItem,
+  uniqueArray,
+  useSearchFormFields,
+  handleNewSearch,
+} from './utils';
 import DropDown from './micro/DropDown';
 import {useState} from 'react';
 import {TagsBuilder} from './micro/TagsBuilder';
 import {DVD, Hardware, LibraryItem, Book, Controller} from '~/models/models';
-import core from '~/lib/supabase';
 
 export interface SearchBarState {
   name: string;
@@ -35,14 +39,21 @@ const SearchBar = ({dropDownMeta, setLibraryItemList}: SearchBarProps) => {
     useSearchFormFields<SearchBarState>(initialFormState);
 
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
-
   const [inputValue, setInputValue] = useState('');
 
   useEffect(() => {
     const currentTagsArray: string[] = [...selectedTags, values.tags];
     setSelectedTags(uniqueArray(currentTagsArray));
 
-    const results = handleNewSearch(values);
+    const fetchSearchItems = async () => {
+      const results = await handleNewSearch(values, selectedTags);
+      setLibraryItemList(results);
+    };
+    fetchSearchItems();
+
+    return () => {
+      resetFormFields();
+    };
   }, [values]);
 
   const handleTagDelete = (tag: string): void => {
@@ -55,48 +66,15 @@ const SearchBar = ({dropDownMeta, setLibraryItemList}: SearchBarProps) => {
   };
 
   const handleSearchClick = () => {
-    const results = handleNewSearch({...values, name: inputValue});
-  };
+    const fetchSearchItems = async () => {
+      const results = await handleNewSearch(
+        {...values, name: inputValue},
+        selectedTags
+      );
 
-  // NEED TO MOVE THIS FUNCTION OUT OF HERE.
-  const handleNewSearch = (values: any) => {
-    const {category, availability, tags, name} = values;
-    if (category && name) {
-      const fetchItems = async () => {
-        const response = await core.library.searchAllLibraryItems(
-          name,
-          selectedTags,
-          category,
-          availability
-        );
-        setLibraryItemList([...response]);
-      };
-      fetchItems();
-    }
-    if (name) {
-      const fetchItems = async () => {
-        const response = await core.library.searchLibraryItemsByName(name);
-        setLibraryItemList([...response]);
-      };
-      fetchItems();
-    } else if (tags) {
-      const fetchItems = async () => {
-        const response = await core.library.searchLibraryItemByTags(
-          selectedTags
-        );
-        setLibraryItemList([...response]);
-      };
-      fetchItems();
-    } else if (availability) {
-      const fetchItems = async () => {
-        const response = await core.library.searchLibraryItemsByAvailability(
-          availability
-        );
-        setLibraryItemList([...response]);
-      };
-      fetchItems();
-    }
-    return;
+      setLibraryItemList(results);
+    };
+    fetchSearchItems();
   };
 
   return (
