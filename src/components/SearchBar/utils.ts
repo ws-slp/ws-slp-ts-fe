@@ -62,7 +62,6 @@ export const dropDownPropGetter = (
 
 const truthyCounter = (values: SearchBarState): number => {
   const total: number = Object.values(values).reduce((acc, value) => {
-    console.log('value', value);
     if (value) {
       return (acc += 1);
     }
@@ -77,7 +76,7 @@ export const handleNewSearch = async (
 ): Promise<Array<LibraryItem | Hardware | Book | DVD | Controller>> => {
   const {category, availability, tags, name} = values;
   try {
-    if (truthyCounter(values) >= 2) {
+    if (truthyCounter(values) > 1) {
       const response = await core.library.searchAllLibraryItems(
         name,
         selectedTags,
