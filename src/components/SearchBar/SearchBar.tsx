@@ -41,12 +41,21 @@ const SearchBar = ({dropDownMeta, setLibraryItemList}: SearchBarProps) => {
   useEffect(() => {
     const currentTagsArray: string[] = [...selectedTags, values.tags];
     setSelectedTags(uniqueArray(currentTagsArray));
+
     const results = handleNewSearch(values);
   }, [values]);
 
   const handleTagDelete = (tag: string): void => {
     const currentTagsArray: string[] = removeItem(selectedTags, tag);
     setSelectedTags(currentTagsArray);
+  };
+
+  const handleInputValue = (e: any) => {
+    setInputValue(e.target.value);
+  };
+
+  const handleSearchClick = () => {
+    const results = handleNewSearch({...values, name: inputValue});
   };
 
   // NEED TO MOVE THIS FUNCTION OUT OF HERE.
@@ -89,8 +98,6 @@ const SearchBar = ({dropDownMeta, setLibraryItemList}: SearchBarProps) => {
     }
     return;
   };
-  console.log('values', values);
-  console.log('inputValue', inputValue);
 
   return (
     <>
@@ -108,10 +115,12 @@ const SearchBar = ({dropDownMeta, setLibraryItemList}: SearchBarProps) => {
             type="text"
             name="name"
             className={styles.input}
-            value={values.name}
-            onChange={handleChange}
+            value={inputValue}
+            onChange={handleInputValue}
           />
-          <button className={styles.button}>Submit</button>
+          <button className={styles.button} onClick={handleSearchClick}>
+            Submit
+          </button>
         </label>
         <TagsBuilder
           selectedTags={selectedTags}
