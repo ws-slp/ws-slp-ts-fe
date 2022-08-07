@@ -74,7 +74,7 @@ export const handleNewSearch = async (
   values: SearchBarState,
   selectedTags: string[]
 ): Promise<Array<LibraryItem | Hardware | Book | DVD | Controller>> => {
-  const {category, availability, tags, name} = values;
+  const {category, availability, name} = values;
   try {
     if (truthyCounter(values) > 1) {
       const response = await core.library.searchAllLibraryItems(
