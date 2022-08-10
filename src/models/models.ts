@@ -1,4 +1,4 @@
-enum Status {
+export enum Status {
   Available = 'available for checkout',
   InStorage = 'in storage',
   NeedsRepair = 'needs repair',
@@ -34,13 +34,17 @@ export type KeyBoard = Hardware;
 
 export type Pedals = Hardware;
 
+export interface Accessory extends LibraryItem {
+  readonly accessory_id: string;
+}
+
 export interface Book extends LibraryItem {
   readonly book_id: string;
   readonly author?: string | null;
   readonly publisher?: string | null;
   readonly product_code?: string | null;
 }
-export interface Films extends LibraryItem {
+export interface Film extends LibraryItem {
   readonly film_id: string;
   readonly release_date?: Date | null;
   readonly duration_in_minutes?: number | null;
