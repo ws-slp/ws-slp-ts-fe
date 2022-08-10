@@ -99,3 +99,7 @@ export const mockSearchLibraryItemsByAvailability: Array<
 export const mockSearchAllLibraryItems: Array<
   LibraryItem | Hardware | Book | Film | Controller | Accessory
 > = [mockLibrary[3]];
+
+export const mockSearchLibraryItemsByTags: Array<
+  LibraryItem | Hardware | Book | Film | Controller | Accessory
+> = [mockLibrary[1], mockLibrary[3]];
