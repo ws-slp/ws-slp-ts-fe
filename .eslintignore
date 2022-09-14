@@ -1,4 +1,4 @@
 build/
 dist/
 *.conf.js
-pages/_middleware.ts
+middleware.ts
