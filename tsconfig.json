@@ -40,7 +40,8 @@
     "./src/pages/_app.tsx",
     "./tailwind.config.js",
     "**/*.jsx",
-    "src/components/Avatar/Avatar.tsx"
+    "src/components/Avatar/Avatar.tsx",
+    "src/pages/_middleware.ts",
   ]
 }
 
