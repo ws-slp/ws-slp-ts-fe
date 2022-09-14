@@ -1,6 +1,6 @@
 init:
 	make create-env-dev
-	npm clean-install
+	npm clean-install --legacy-peer-deps
 	npm run prepare
 
 create-env-dev:
