@@ -13,7 +13,7 @@ export async function middleware(request: NextRequest) {
 }
 
 async function verifyAuth(request: NextRequest) {
-  const token = request.cookies.get(SUPA_TOKEN);
+  const token = request.cookies[SUPA_TOKEN];
 
   // Obtain JWT Secret from Supabase dashboard - 'Settings' -> 'API' -> 'Config' -> 'JWT Secret' and configure in Vercel as `SUPABASE_JWT_SECRET`
   if (!token || !(await jwt.verify(token, process.env.SUPABASE_JWT_SECRET!))) {
