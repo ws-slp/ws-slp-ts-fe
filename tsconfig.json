@@ -41,7 +41,7 @@
     "./tailwind.config.js",
     "**/*.jsx",
     "src/components/Avatar/Avatar.tsx",
-    "src/pages/middleware.ts",
+    "src/pages/_middleware.ts",
   ]
 }
 
