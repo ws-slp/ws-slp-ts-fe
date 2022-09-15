@@ -1,6 +1,6 @@
 import {NextRequest, NextResponse} from 'next/server';
 import jwt from '@tsndr/cloudflare-worker-jwt';
-import {MW_AUTH, SUPA_TOKEN} from '~/config';
+import {MW_AUTH, SUPA_TOKEN} from './src/config';
 
 /**
  * Verifies the user's JWT token and continues with the chain of middlewares, till the actual route is visited if the user is valid, or redirects to `/` if it's not
