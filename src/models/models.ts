@@ -52,3 +52,11 @@ export interface Film extends LibraryItem {
   readonly duration_in_minutes?: number | null;
   readonly actors?: string[] | null;
 }
+
+export type TLibraryItems =
+  | Accessory
+  | Book
+  | Controller
+  | Film
+  | Hardware
+  | LibraryItem;

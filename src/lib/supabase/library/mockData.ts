@@ -1,13 +1,5 @@
 const {randomUUID} = require('crypto');
-import {
-  Accessory,
-  Book,
-  Controller,
-  Film,
-  Hardware,
-  LibraryItem,
-  Status,
-} from '~/models/models';
+import {TLibraryItems, Status} from '~/models/models';
 
 const mockLibrary = [
   {
@@ -80,26 +72,23 @@ const mockLibrary = [
   },
 ];
 
-export const mockGetAllLibraryItems: Array<
-  LibraryItem | Hardware | Book | Film | Controller | Accessory
-> = mockLibrary;
+export const mockGetAllLibraryItems: Array<TLibraryItems> = mockLibrary;
 
-export const mockSearchLibraryItemsByName: Array<
-  LibraryItem | Hardware | Book | Film | Controller | Accessory
-> = [mockLibrary[0]];
+export const mockSearchLibraryItemsByName: Array<TLibraryItems> = [
+  mockLibrary[0],
+];
 
-export const mockSearchLibraryItemsByCategory: Array<
-  LibraryItem | Hardware | Book | Film | Controller | Accessory
-> = [mockLibrary[1]];
+export const mockSearchLibraryItemsByCategory: Array<TLibraryItems> = [
+  mockLibrary[1],
+];
 
-export const mockSearchLibraryItemsByAvailability: Array<
-  LibraryItem | Hardware | Book | Film | Controller | Accessory
-> = [mockLibrary[2]];
+export const mockSearchLibraryItemsByAvailability: Array<TLibraryItems> = [
+  mockLibrary[2],
+];
 
-export const mockSearchAllLibraryItems: Array<
-  LibraryItem | Hardware | Book | Film | Controller | Accessory
-> = [mockLibrary[3]];
+export const mockSearchAllLibraryItems: Array<TLibraryItems> = [mockLibrary[3]];
 
-export const mockSearchLibraryItemsByTags: Array<
-  LibraryItem | Hardware | Book | Film | Controller | Accessory
-> = [mockLibrary[1], mockLibrary[3]];
+export const mockSearchLibraryItemsByTags: Array<TLibraryItems> = [
+  mockLibrary[1],
+  mockLibrary[3],
+];

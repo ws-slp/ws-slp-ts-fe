@@ -6,22 +6,7 @@ import {
   mockSearchLibraryItemsByTags,
   mockSearchAllLibraryItems,
 } from './mockData';
-import {
-  Accessory,
-  Book,
-  Controller,
-  Film,
-  Hardware,
-  LibraryItem,
-} from '~/models/models';
-
-type TLibraryItems =
-  | Accessory
-  | Book
-  | Controller
-  | Film
-  | Hardware
-  | LibraryItem;
+import {TLibraryItems} from '~/models/models';
 
 //Stub Cloud Functions for the Library Page
 
@@ -37,12 +22,8 @@ const getAllLibraryItems = (): Promise<ReadonlyArray<TLibraryItems>> => {
 
 const searchLibraryItemsByName = (
   name: string
-): Promise<
-  ReadonlyArray<LibraryItem | Hardware | Book | Film | Controller | Accessory>
-> => {
-  const response = new Promise<
-    Array<LibraryItem | Hardware | Book | Film | Controller | Accessory>
-  >(resolve => {
+): Promise<ReadonlyArray<TLibraryItems>> => {
+  const response = new Promise<Array<TLibraryItems>>(resolve => {
     setTimeout(() => {
       console.log('name', name);
       resolve(mockSearchLibraryItemsByName);
@@ -54,12 +35,8 @@ const searchLibraryItemsByName = (
 
 const searchLibraryItemByTags = (
   tags: string[]
-): Promise<
-  ReadonlyArray<LibraryItem | Hardware | Book | Film | Controller | Accessory>
-> => {
-  const response = new Promise<
-    Array<LibraryItem | Hardware | Book | Film | Controller | Accessory>
-  >(resolve => {
+): Promise<ReadonlyArray<TLibraryItems>> => {
+  const response = new Promise<Array<TLibraryItems>>(resolve => {
     setTimeout(() => {
       console.log('tags', tags);
       resolve(mockSearchLibraryItemsByTags);
@@ -71,12 +48,8 @@ const searchLibraryItemByTags = (
 
 const searchLibraryItemsByCategory = (
   category: string
-): Promise<
-  ReadonlyArray<LibraryItem | Hardware | Book | Film | Controller | Accessory>
-> => {
-  const response = new Promise<
-    Array<LibraryItem | Hardware | Book | Film | Controller | Accessory>
-  >(resolve => {
+): Promise<ReadonlyArray<TLibraryItems>> => {
+  const response = new Promise<Array<TLibraryItems>>(resolve => {
     setTimeout(() => {
       console.log('category', category);
       resolve(mockSearchLibraryItemsByCategory);
@@ -87,11 +60,9 @@ const searchLibraryItemsByCategory = (
 };
 
 const searchLibraryItemsByAvailability = (): Promise<
-  ReadonlyArray<LibraryItem | Hardware | Book | Film | Controller | Accessory>
+  ReadonlyArray<TLibraryItems>
 > => {
-  const response = new Promise<
-    Array<LibraryItem | Hardware | Book | Film | Controller | Accessory>
-  >(resolve => {
+  const response = new Promise<Array<TLibraryItems>>(resolve => {
     setTimeout(() => {
       resolve(mockSearchLibraryItemsByAvailability);
     }, 500);
@@ -104,12 +75,8 @@ const searchAllLibraryItems = (
   name: string,
   tags: string[],
   category: string
-): Promise<
-  ReadonlyArray<LibraryItem | Hardware | Book | Film | Controller | Accessory>
-> => {
-  const response = new Promise<
-    Array<LibraryItem | Hardware | Book | Film | Controller | Accessory>
-  >(resolve => {
+): Promise<ReadonlyArray<TLibraryItems>> => {
+  const response = new Promise<Array<TLibraryItems>>(resolve => {
     setTimeout(() => {
       console.table([name, tags, category]);
       resolve(mockSearchAllLibraryItems);
