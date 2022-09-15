@@ -26,12 +26,8 @@ type TLibraryItems =
 
 //Stub Cloud Functions for the Library Page
 
-const getAllLibraryItems = (): Promise<
-  ReadonlyArray<LibraryItem | Hardware | Book | Film | Controller | Accessory>
-> => {
-  const response = new Promise<
-    Array<LibraryItem | Hardware | Book | Film | Controller | Accessory>
-  >(resolve => {
+const getAllLibraryItems = (): Promise<ReadonlyArray<TLibraryItems>> => {
+  const response = new Promise<Array<TLibraryItems>>(resolve => {
     setTimeout(() => {
       resolve(mockGetAllLibraryItems);
     }, 500);
