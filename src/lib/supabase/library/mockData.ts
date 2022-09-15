@@ -6,6 +6,7 @@ import {
   Film,
   Hardware,
   LibraryItem,
+  Status,
 } from '~/models/models';
 
 const mockLibrary = [
@@ -30,7 +31,7 @@ const mockLibrary = [
   },
   {
     // Controller
-    inventory_id: uuid(),
+    inventory_id: randomUUID(),
     created_at: new Date(),
     updated_at: new Date(),
     item_status: [Status.IN_STORAGE],
@@ -45,11 +46,11 @@ const mockLibrary = [
   },
   {
     // Book
-    inventory_id: uuid(),
+    inventory_id: randomUUID(),
     created_at: new Date(),
     updated_at: new Date(),
     item_status: [Status.IN_STORAGE],
-    book_id: uuid(),
+    book_id: randomUUID(),
     name: 'The Synthesizer',
     quantity: 1,
     image_url:
