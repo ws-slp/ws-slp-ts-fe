@@ -23,7 +23,6 @@ type TLibraryItems =
   | Hardware
   | LibraryItem;
 
-
 //Stub Cloud Functions for the Library Page
 
 const getAllLibraryItems = (): Promise<ReadonlyArray<TLibraryItems>> => {

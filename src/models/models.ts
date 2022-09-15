@@ -1,6 +1,6 @@
 export enum Status {
   AVAILABLE = 'available for checkout',
-  CHECKED_OUT = 'checked out'
+  CHECKED_OUT = 'checked out',
   IN_STORAGE = 'in storage',
   NEEDS_REPAIR = 'needs repair',
   NOT_AVAILABLE = 'not available',
