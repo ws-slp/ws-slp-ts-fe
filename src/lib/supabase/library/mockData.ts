@@ -15,7 +15,7 @@ const mockLibrary = [
     created_at: new Date(),
     updated_at: new Date(),
     item_status: [Status.IN_STORAGE],
-    hardware_id: uuid(),
+    hardware_id: randomUUID(),
     name: 'Digitakt',
     quantity: 1,
     image_url:
