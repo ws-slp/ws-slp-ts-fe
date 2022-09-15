@@ -68,7 +68,7 @@ const mockLibrary = [
     created_at: new Date(),
     updated_at: new Date(),
     item_status: [Status.IN_STORAGE],
-    accessory_id: uuid(),
+    accessory_id: randomUUID(),
     name: 'HD 450BT',
     quantity: 1,
     image_url:
