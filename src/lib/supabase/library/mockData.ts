@@ -64,7 +64,7 @@ const mockLibrary = [
   },
   {
     // Accessory
-    inventory_id: uuid(),
+    inventory_id: randomUUID(),
     created_at: new Date(),
     updated_at: new Date(),
     item_status: [Status.IN_STORAGE],
