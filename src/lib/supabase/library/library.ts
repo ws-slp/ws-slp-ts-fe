@@ -7,13 +7,22 @@ import {
   mockSearchAllLibraryItems,
 } from './mockData';
 import {
-  LibraryItem,
-  Hardware,
-  Book,
-  Film,
-  Controller,
   Accessory,
+  Book,
+  Controller,
+  Film,
+  Hardware,
+  LibraryItem,
 } from '~/models/models';
+
+type TLibraryItems =
+  | Accessory
+  | Book
+  | Controller
+  | Film
+  | Hardware
+  | LibraryItem;
+
 
 //Stub Cloud Functions for the Library Page
 
