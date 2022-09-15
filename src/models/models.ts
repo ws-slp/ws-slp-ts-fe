@@ -1,7 +1,9 @@
 export enum Status {
-  Available = 'available for checkout',
-  InStorage = 'in storage',
-  NeedsRepair = 'needs repair',
+  AVAILABLE = 'available for checkout',
+  CHECKED_OUT = 'checked out'
+  IN_STORAGE = 'in storage',
+  NEEDS_REPAIR = 'needs repair',
+  NOT_AVAILABLE = 'not available',
 }
 
 export interface LibraryItem {
