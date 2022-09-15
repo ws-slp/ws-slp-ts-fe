@@ -1,12 +1,11 @@
 import {v4 as uuid} from 'uuid';
 import {
-  LibraryItem,
-  Hardware,
-  Book,
-  Film,
-  Controller,
-  Status,
   Accessory,
+  Book,
+  Controller,
+  Film,
+  Hardware,
+  LibraryItem,
 } from '~/models/models';
 
 const mockLibrary = [
