@@ -16,7 +16,6 @@ const getAllLibraryItems = (): Promise<ReadonlyArray<TLibraryItems>> => {
       resolve(mockGetAllLibraryItems);
     }, 500);
   });
-
   return response;
 };
 
@@ -25,7 +24,6 @@ const searchLibraryItemsByName = (
 ): Promise<ReadonlyArray<TLibraryItems>> => {
   const response = new Promise<Array<TLibraryItems>>(resolve => {
     setTimeout(() => {
-      console.log('name', name);
       resolve(mockSearchLibraryItemsByName);
     }, 500);
   });
@@ -38,7 +36,6 @@ const searchLibraryItemByTags = (
 ): Promise<ReadonlyArray<TLibraryItems>> => {
   const response = new Promise<Array<TLibraryItems>>(resolve => {
     setTimeout(() => {
-      console.log('tags', tags);
       resolve(mockSearchLibraryItemsByTags);
     }, 500);
   });
@@ -51,7 +48,6 @@ const searchLibraryItemsByCategory = (
 ): Promise<ReadonlyArray<TLibraryItems>> => {
   const response = new Promise<Array<TLibraryItems>>(resolve => {
     setTimeout(() => {
-      console.log('category', category);
       resolve(mockSearchLibraryItemsByCategory);
     }, 500);
   });
@@ -78,7 +74,6 @@ const searchAllLibraryItems = (
 ): Promise<ReadonlyArray<TLibraryItems>> => {
   const response = new Promise<Array<TLibraryItems>>(resolve => {
     setTimeout(() => {
-      console.table([name, tags, category]);
       resolve(mockSearchAllLibraryItems);
     }, 500);
   });
