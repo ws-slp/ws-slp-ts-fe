@@ -9,6 +9,7 @@ import {
 import {TLibraryItems} from '~/models/models';
 
 //Stub Cloud Functions for the Library Page
+// TODO: console.logs are only for getting rid of unused variable errors, delete them when implementing backend/supabase.
 
 const getAllLibraryItems = async (): Promise<ReadonlyArray<TLibraryItems>> => {
   const response = await new Promise<Array<TLibraryItems>>(resolve => {
@@ -20,6 +21,7 @@ const getAllLibraryItems = async (): Promise<ReadonlyArray<TLibraryItems>> => {
 const searchLibraryItemsByName = async (
   name: string
 ): Promise<ReadonlyArray<TLibraryItems>> => {
+  console.log('name', name);
   const response = await new Promise<Array<TLibraryItems>>(resolve => {
     resolve(mockSearchLibraryItemsByName);
   });
@@ -29,6 +31,7 @@ const searchLibraryItemsByName = async (
 const searchLibraryItemByTags = async (
   tags: string[]
 ): Promise<ReadonlyArray<TLibraryItems>> => {
+  console.log('tags', tags);
   const response = await new Promise<Array<TLibraryItems>>(resolve => {
     resolve(mockSearchLibraryItemsByTags);
   });
@@ -39,6 +42,7 @@ const searchLibraryItemByTags = async (
 const searchLibraryItemsByCategory = async (
   category: string
 ): Promise<ReadonlyArray<TLibraryItems>> => {
+  console.log('category', category);
   const response = await new Promise<Array<TLibraryItems>>(resolve => {
     resolve(mockSearchLibraryItemsByCategory);
   });
@@ -46,9 +50,10 @@ const searchLibraryItemsByCategory = async (
   return response;
 };
 
-const searchLibraryItemsByAvailability = async (): Promise<
-  ReadonlyArray<TLibraryItems>
-> => {
+const searchLibraryItemsByAvailability = async (
+  availability: string
+): Promise<ReadonlyArray<TLibraryItems>> => {
+  console.log('availability', availability);
   const response = await new Promise<Array<TLibraryItems>>(resolve => {
     resolve(mockSearchLibraryItemsByAvailability);
   });
@@ -61,6 +66,7 @@ const searchAllLibraryItems = async (
   tags: string[],
   category: string
 ): Promise<ReadonlyArray<TLibraryItems>> => {
+  console.log('search params', name, tags, category);
   const response = await new Promise<Array<TLibraryItems>>(resolve => {
     resolve(mockSearchAllLibraryItems);
   });
