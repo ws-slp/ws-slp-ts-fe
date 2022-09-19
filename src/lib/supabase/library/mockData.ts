@@ -1,14 +1,14 @@
-const {randomUUID} = require('crypto');
+const {randomBytes} = require('crypto');
 import {TLibraryItems, Status} from '~/models/models';
 
 const mockLibrary = [
   {
     // Hardware
-    inventory_id: randomUUID(),
+    inventory_id: randomBytes(20).toString('hex'),
     created_at: new Date(),
     updated_at: new Date(),
     item_status: [Status.IN_STORAGE],
-    hardware_id: randomUUID(),
+    hardware_id: randomBytes(20).toString('hex'),
     name: 'Digitakt',
     quantity: 1,
     image_url:
@@ -23,7 +23,7 @@ const mockLibrary = [
   },
   {
     // Controller
-    inventory_id: randomUUID(),
+    inventory_id: randomBytes(20).toString('hex'),
     created_at: new Date(),
     updated_at: new Date(),
     item_status: [Status.IN_STORAGE],
@@ -38,11 +38,11 @@ const mockLibrary = [
   },
   {
     // Book
-    inventory_id: randomUUID(),
+    inventory_id: randomBytes(20).toString('hex'),
     created_at: new Date(),
     updated_at: new Date(),
     item_status: [Status.IN_STORAGE],
-    book_id: randomUUID(),
+    book_id: randomBytes(20).toString('hex'),
     name: 'The Synthesizer',
     quantity: 1,
     image_url:
@@ -57,11 +57,11 @@ const mockLibrary = [
   },
   {
     // Accessory
-    inventory_id: randomUUID(),
+    inventory_id: randomBytes(20).toString('hex'),
     created_at: new Date(),
     updated_at: new Date(),
     item_status: [Status.IN_STORAGE],
-    accessory_id: randomUUID(),
+    accessory_id: randomBytes(20).toString('hex'),
     name: 'HD 450BT',
     quantity: 1,
     image_url:
