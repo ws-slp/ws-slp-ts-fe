@@ -10,72 +10,59 @@ import {TLibraryItems} from '~/models/models';
 
 //Stub Cloud Functions for the Library Page
 
-const getAllLibraryItems = (): Promise<ReadonlyArray<TLibraryItems>> => {
-  const response = new Promise<Array<TLibraryItems>>(resolve => {
-    setTimeout(() => {
-      resolve(mockGetAllLibraryItems);
-    }, 500);
+const getAllLibraryItems = async (): Promise<ReadonlyArray<TLibraryItems>> => {
+  const response = await new Promise<Array<TLibraryItems>>(resolve => {
+    resolve(mockGetAllLibraryItems);
   });
   return response;
 };
 
-const searchLibraryItemsByName = (
+const searchLibraryItemsByName = async (
   name: string
 ): Promise<ReadonlyArray<TLibraryItems>> => {
-  const response = new Promise<Array<TLibraryItems>>(resolve => {
-    setTimeout(() => {
-      resolve(mockSearchLibraryItemsByName);
-    }, 500);
+  const response = await new Promise<Array<TLibraryItems>>(resolve => {
+    resolve(mockSearchLibraryItemsByName);
   });
-
   return response;
 };
 
-const searchLibraryItemByTags = (
+const searchLibraryItemByTags = async (
   tags: string[]
 ): Promise<ReadonlyArray<TLibraryItems>> => {
-  const response = new Promise<Array<TLibraryItems>>(resolve => {
-    setTimeout(() => {
-      resolve(mockSearchLibraryItemsByTags);
-    }, 500);
+  const response = await new Promise<Array<TLibraryItems>>(resolve => {
+    resolve(mockSearchLibraryItemsByTags);
   });
 
   return response;
 };
 
-const searchLibraryItemsByCategory = (
+const searchLibraryItemsByCategory = async (
   category: string
 ): Promise<ReadonlyArray<TLibraryItems>> => {
-  const response = new Promise<Array<TLibraryItems>>(resolve => {
-    setTimeout(() => {
-      resolve(mockSearchLibraryItemsByCategory);
-    }, 500);
+  const response = await new Promise<Array<TLibraryItems>>(resolve => {
+    resolve(mockSearchLibraryItemsByCategory);
   });
 
   return response;
 };
 
-const searchLibraryItemsByAvailability = (): Promise<
+const searchLibraryItemsByAvailability = async (): Promise<
   ReadonlyArray<TLibraryItems>
 > => {
-  const response = new Promise<Array<TLibraryItems>>(resolve => {
-    setTimeout(() => {
-      resolve(mockSearchLibraryItemsByAvailability);
-    }, 500);
+  const response = await new Promise<Array<TLibraryItems>>(resolve => {
+    resolve(mockSearchLibraryItemsByAvailability);
   });
 
   return response;
 };
 
-const searchAllLibraryItems = (
+const searchAllLibraryItems = async (
   name: string,
   tags: string[],
   category: string
 ): Promise<ReadonlyArray<TLibraryItems>> => {
-  const response = new Promise<Array<TLibraryItems>>(resolve => {
-    setTimeout(() => {
-      resolve(mockSearchAllLibraryItems);
-    }, 500);
+  const response = await new Promise<Array<TLibraryItems>>(resolve => {
+    resolve(mockSearchAllLibraryItems);
   });
 
   return response;
