@@ -41,7 +41,7 @@ const IndexPage: NextPage<NextAppPageProps> = () => {
             <FaLock className="text-gray-600 text-5xl shadow-sm" />
           </div>
           <h3 className="text-3xl text-gray-600">
-            Supa<strong>Auth</strong>&nbsp;
+            ws-slp<strong>Auth</strong>&nbsp;
           </h3>
           <small>
             Please provide your <strong>email</strong> and{' '}

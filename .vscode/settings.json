@@ -3,11 +3,5 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
-  "cSpell.words": [
-    "Devs",
-    "Redir",
-    "SUPA",
-    "Supabase",
-    "Vercel"
-  ]
+  "cSpell.words": ["Devs", "Redir", "SUPA", "Supabase", "Vercel"]
 }

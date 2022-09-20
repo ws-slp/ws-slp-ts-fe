@@ -5,11 +5,7 @@
     "outDir": "build",
     "allowJs": true,
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
@@ -24,23 +20,22 @@
     "noImplicitAny": true,
     "incremental": true,
     "paths": {
-      "~/*": [
-        "./*"
-      ]
-    },
+      "~/*": ["./*"]
+    }
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "src/components/layout.ts.old"],
+    "**/*.tsx",
+    "src/components/layout.ts.old"
+  ],
   "exclude": [
     "node_modules",
     "./src/pages/index.tsx",
     "./src/pages/_app.tsx",
     "./tailwind.config.js",
     "**/*.jsx",
-    "src/components/Avatar/Avatar.tsx"
+    "src/components/Avatar/Avatar.tsx",
+    "middleware.ts"
   ]
 }
-

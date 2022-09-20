@@ -6,13 +6,12 @@ interface Props {
   children: React.ReactChild | React.ReactChildren;
 }
 
-const Header: FunctionComponent<Props> = ({children}: Props) => {
+const Header: FunctionComponent<Props> = () => {
   return (
     <>
       <Head>
         <title>I am header title</title>
       </Head>
-      <header className="mx-auto max-w-7xl sm:px-6 lg:px-8">{children}</header>
       <Link href="/">
         <a>home</a>
       </Link>
