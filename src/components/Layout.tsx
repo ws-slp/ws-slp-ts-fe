@@ -5,6 +5,7 @@ import Footer from './Footer/Footer';
 import {MessageList, useMessage} from '~/lib/message';
 
 type LayoutProps = {
+  children: React.ReactNode;
   usePadding?: boolean;
   useBackdrop?: boolean;
 };
