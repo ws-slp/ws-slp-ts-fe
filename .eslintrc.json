@@ -7,6 +7,12 @@
       {
         "allowModules": ["protractor"]
       }
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
     ]
   },
   "parserOptions": {
