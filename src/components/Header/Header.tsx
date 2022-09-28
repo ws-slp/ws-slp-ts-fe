@@ -13,29 +13,31 @@ const Header: FunctionComponent<Props> = () => {
       <Head>
         <title>I am header title</title>
       </Head>
-      <Link href="/">
-        <a>home</a>
-      </Link>
-      &nbsp;
-      <Link href="/about">
-        <a>about</a>
-      </Link>
-      &nbsp;
-      <Link href="/library">
-        <a>library</a>
-      </Link>
-      &nbsp;
-      <Link href="/workshops">
-        <a>workshops</a>
-      </Link>
-      &nbsp;
-      <Link href="/membership">
-        <a>membership</a>
-      </Link>
-      &nbsp;
-      <Link href="/auth">
-        <a>login/register</a>
-      </Link>
+      <div className="flex justify-between">
+        <Link href="/">
+          <a>ws-slp</a>
+        </Link>
+        <nav className="flex gap-12">
+          <Link href="/">
+            <a>home</a>
+          </Link>
+          <Link href="/library">
+            <a>library</a>
+          </Link>
+          <Link href="/workshops">
+            <a>workshops</a>
+          </Link>
+          <Link href="/membership">
+            <a>membership</a>
+          </Link>
+          <Link href="/about">
+            <a>about</a>
+          </Link>
+          <Link href="/auth">
+            <a>login/register</a>
+          </Link>
+        </nav>
+      </div>
     </>
   );
 };
