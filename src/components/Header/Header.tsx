@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 
 interface Props {
+  // TODO: Replace deprecated types
   children: React.ReactChild | React.ReactChildren;
 }
 
@@ -18,6 +19,22 @@ const Header: FunctionComponent<Props> = () => {
       &nbsp;
       <Link href="/about">
         <a>about</a>
+      </Link>
+      &nbsp;
+      <Link href="/library">
+        <a>library</a>
+      </Link>
+      &nbsp;
+      <Link href="/workshops">
+        <a>workshops</a>
+      </Link>
+      &nbsp;
+      <Link href="/membership">
+        <a>membership</a>
+      </Link>
+      &nbsp;
+      <Link href="/auth">
+        <a>login/register</a>
       </Link>
     </>
   );
