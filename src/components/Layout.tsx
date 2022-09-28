@@ -35,7 +35,7 @@ const FullLayout: FunctionComponent<LayoutProps> = ({
 };
 
 FullLayout.defaultProps = {
-  usePadding: true,
+  usePadding: false,
   useBackdrop: false,
 };
 

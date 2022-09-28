@@ -1,15 +1,15 @@
 import Layout from '../components/Layout';
 
-const About = () => {
+const Membership = () => {
   //this is javascript area
 
   return (
     <>
       <Layout>
-        <h1>this is about page</h1>
+        <h1>this is membership page</h1>
       </Layout>
     </>
   );
 };
 
-export default About;
+export default Membership;
