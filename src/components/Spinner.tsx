@@ -1,5 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
 import classNames from 'classnames';
 import styles from '~/styles/gg-spinner.module.css';
 
@@ -12,7 +10,7 @@ const Spinner: React.FunctionComponent<SpinnerProps> = ({size}) => (
   <div
     className={classNames(
       styles['gg-spinner'],
-      styles[size] ? styles[size] : null
+      styles[size as SpinnerSize] ? styles[size as SpinnerSize] : null
     )}
   ></div>
 );
