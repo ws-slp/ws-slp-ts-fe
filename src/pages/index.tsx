@@ -6,6 +6,7 @@ import Layout from '../components/Layout';
 import Spinner from '../components/Spinner';
 import {useFormFields} from '../lib/utils';
 import {useAuth} from '../lib/auth';
+import React from 'react';
 
 type SignUpFieldProps = {
   email: string;
@@ -28,7 +29,7 @@ const IndexPage: NextPage<NextAppPageProps> = () => {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    isSignIn ? await signIn(values) : await signUp(values);
+    isSignIn ? await signIn?.(values) : await signUp?.(values);
     resetFormFields();
   };
 
@@ -55,7 +56,7 @@ const IndexPage: NextPage<NextAppPageProps> = () => {
             <button
               onClick={evt => {
                 evt.preventDefault();
-                signInWithProvider('discord');
+                signInWithProvider?.('discord');
               }}
               className="flex-1 bg-gray-200 text-green-700 py-3 rounded w-full text-center shadow"
             >
@@ -66,7 +67,7 @@ const IndexPage: NextPage<NextAppPageProps> = () => {
             <button
               onClick={evt => {
                 evt.preventDefault();
-                signInWithProvider('github');
+                signInWithProvider?.('github');
               }}
               className="flex-1 bg-gray-200 text-green-700 py-3 rounded w-full text-center shadow"
             >
@@ -77,7 +78,7 @@ const IndexPage: NextPage<NextAppPageProps> = () => {
             <button
               onClick={evt => {
                 evt.preventDefault();
-                signInWithProvider('google');
+                signInWithProvider?.('google');
               }}
               className="flex-1 bg-gray-200 text-green-700 py-3 rounded w-full text-center shadow"
             >
