@@ -1,8 +1,9 @@
+import React from 'react';
 import {useEffect, useState} from 'react';
 import {supabase} from '../../lib/supabase';
 
 const Avatar = ({url, size, onUpload}) => {
-  const [avatarUrl, setAvatarUrl] = useState(null);
+  const [avatarUrl, setAvatarUrl] = useState('');
   const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
@@ -17,7 +18,7 @@ const Avatar = ({url, size, onUpload}) => {
       if (error) {
         throw error;
       }
-      const url = URL.createObjectURL(data);
+      const url = URL.createObjectURL(data as Blob);
       setAvatarUrl(url);
     } catch (error) {
       console.log('Error downloading image: ', error.message);
