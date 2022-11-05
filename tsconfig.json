@@ -37,5 +37,10 @@
     "**/*.jsx",
     "src/components/Avatar/Avatar.tsx",
     "middleware.ts"
-  ]
+  ],
+   "parserOptions": {
+    "project": "tsconfig.json",
+    "tsconfigRootDir": "_dirname",
+    "sourceType": "module",
+  },
 }
